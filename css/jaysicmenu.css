@@ -1,75 +1,114 @@
 div.jaysic-menu {
-    font-family: sans-serif;
-    font-size: 13px;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    font-size: 11px;
 }
 
 div.jaysic-menu ul {
     list-style: none;
+    width: auto;
     margin: 0;
     padding: 0;
-    width: 100%;
     vertical-align: middle;
-    float: left;
-    background: #000000;
-}
-
-div.jaysic-menu ul:first-child {
-    height: 38px;
-}
-
-div.jaysic-menu ul li {
-    background: #000000;
-    color: #FFFFFF;
-    padding: 6px 6px 0 6px;
-    float: left;
-    margin: 0;
-}
-
-div.jaysic-menu ul ul li:last-child {
-    padding-bottom: 12px;
-}
-
-div.jaysic-menu li span {
-    cursor: pointer;
-}
-
-div.jaysic-menu ul li.expanded {
-    background: #666666;
-    color: #FFFFFF;
+    background: #D4D0C8;
+    border: 1px white outset;
+    box-shadow: 3px 3px 3px #888;
+    overflow: hidden;
 }
 
 div.jaysic-menu ul ul {
     list-style: none;
-    display: none;
-    /*position: absolute;*/
-    width: auto;
+    position: absolute;
     top: 100%;
     left: 0;
     margin: 0;
     padding: 0;
-    /*box-shadow: 5px 5px 5px #888;*/
-    overflow: hidden;
 }
+
+div.jaysic-menu ul.root {
+    height: 24px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px #898782 solid;
+    box-shadow: 0px 0px 0px #000;
+    float: left;
+}
+
+div.jaysic-menu ul li {
+    color: black;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position: 6px 4px;
+    padding: 0px 0px 0px 28px;
+    margin: 0;
+    cursor: default;
+    vertical-align: middle;
+    width: auto;
+    float: left;
+    padding: 4px 16px 4px 28px;
+    clear: both;
+    min-width: 150px;
+    margin: 2px;
+}
+
+div.jaysic-menu ul li:hover {
+    background-color: #0A246A;
+    color: white;
+}
+
+div.jaysic-menu ul li:last-child {
+    padding-bottom: 6px;
+}
+
+div.jaysic-menu ul.root > li {
+    min-width: auto;
+    padding: 4px 10px 9px 28px;
+    clear: none;
+    margin: 0;
+}
+
+div.jaysic-menu ul.root > li:hover {
+    background-color: transparent;
+    border: 1px white inset;
+    color: black;
+}
+
+
+/*div.jaysic-menu ul ul li:last-child {*/
+    /*padding-bottom: 6px;*/
+/*}*/
+
+/*div.jaysic-menu ul ul li {*/
+    /*cursor: pointer;*/
+    /*display: block;*/
+    /*color: black;*/
+    /*width: 100%;*/
+    /*text-decoration: none;*/
+    /*background-repeat: no-repeat;*/
+    /*padding: 4px 12px 4px 32px;*/
+/*}*/
+
+/*div.jaysic-menu ul ul li:hover {*/
+    /*color: white;*/
+    /*background: #0A246A;*/
+/*}*/
+
 
 /* Links */
 
-div.jaysic-menu span a:link,
-div.jaysic-menu span a:visited
-{
-    display: block;
-    color: #FFFFFF;
-    text-decoration: none;
-    /*padding: 4px 12px 4px 12px;*/
-
+/*div.jaysic-menu span*/
+/*{*/
+    /*display: block;*/
+    /*color: black;*/
+    /*text-decoration: none;*/
+    /*background-repeat: no-repeat;*/
+    /*padding: 4px 12px 4px 32px;*/
 /*}*/
 
-/*div.jaysic-menu span a.icon {*/
-    background-repeat: no-repeat;
-    padding: 4px 12px 4px 32px;
-}
+/*div.jaysic-menu span span:hover*/
+/*{*/
+    /*text-decoration: underline;*/
+    /*color: white;*/
+/*}*/
 
-div.jaysic-menu span a:hover,
-div.jaysic-menu span a:active
-{
-    text-decoration: underline;
-}
+
+

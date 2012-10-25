@@ -9,20 +9,44 @@
             this.container = $("#" + renderTo);
 
             this.container.addClass("jaysic-menu");
-            this.container.append(this.renderMenu(config));
+            var menu = this.renderMenu(config, true);
+            this.container.append(menu);
 
-            $(".jaysic-menu a").bind('click', function() {
-                var submenu = $(this).parent().parent().children().last();
-                submenu.children().css({
-                    clear: "both"
+            $(".jaysic-menu li").mouseenter(function() {
+                var t = $(this);
+                var submenu = t.children("ul");
+
+                submenu.css({
+                    left: t.position().left,
+                    top: t.position().top + t.parent().height() - 1
                 });
+
+                var width = 0;
+
+                for(i = 0; i < submenu.children().length; i++) {
+                    var xwidth = $(submenu.children()[i]).width();
+                    width = (xwidth > width) ? xwidth : width;
+                }
+
+                submenu.children().width(width);
+
                 submenu.show();
             });
+
+            $(".jaysic-menu li").mouseleave(function() {
+                var t = $(this);
+                t.children("ul").hide();
+            });
+
         },
 
-        renderMenu: function (children) {
+        renderMenu: function (children, root) {
 
             var container = document.createElement("ul");
+
+            if(root == true) {
+                container.setAttribute("class", "root");
+            }
 
             for (var i = 0; i < children.length; i++) {
                 var element = children[i];
@@ -33,34 +57,25 @@
                 var hasIcon = typeof element.icon !== "undefined";
 
                 var menu = document.createElement("li");
-                var content = document.createElement("span");
                 var text = document.createTextNode(element.caption);
-                var link = document.createElement("a");
+                var link = document.createElement("span");
 
-                content.setAttribute("title", element.caption);
-                content.appendChild(text);
-
-                link.setAttribute("href", "javascript:void(null)");
+                link.appendChild(text);
+                menu.appendChild(link);
 
                 if (hasAction && hasChildren === false) {
-                    content.setAttribute("onclick", element.action);
-                    content.setAttribute("class", "action");
+                    menu.setAttribute("onclick", element.action);
                 }
                 else if (hasUrl && hasChildren === false) {
-                    link.setAttribute("href", element.url);
+                    menu.setAttribute("onclick", "location.href='" + element.url + "'");
                 }
 
                 if (hasIcon === true) {
-                    link.setAttribute("class", "icon icon-" + element.icon);
+                    menu.setAttribute("class", "icon icon-" + element.icon);
                 }
 
-                link.appendChild(text);
-                content.appendChild(link);
-
-                menu.appendChild(content);
-
                 if (hasChildren === true) {
-                    menu.appendChild(this.renderMenu(element.children));
+                    menu.appendChild(this.renderMenu(element.children, false));
                 }
 
                 container.appendChild(menu);
@@ -69,4 +84,5 @@
             return container;
         }
     }
+
 })(jQuery);

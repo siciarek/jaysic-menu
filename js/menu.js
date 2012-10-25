@@ -1,18 +1,22 @@
+function tennisAction() {
+    var x = $(".jaysic-menu .root").children();
+
+    console.log(x);
+}
+
 $(document).ready(function () {
 
-    function tennisAction() {
-        alert("Tennis Action");
-    }
-
-    $.jaysic.menu([
+   $.jaysic.menu([
         {
             "caption": "Home",
             "url": "index.html",
-            "icon": "home"
+            "icon": "home",
+            "action": "tennisAction()"
         },
         {
             "caption": "Games",
             "url": "games.html",
+            "icon": "soccer",
             "children": [
                 {
                     "caption": "Soccer",
@@ -37,7 +41,7 @@ $(document).ready(function () {
                 {
                     "caption": "Tennis",
                     "url": "tennis.html",
-                    "action": "alert(3)"
+                    "action": "alert('Tennis Action')"
                 }
             ]
         },
