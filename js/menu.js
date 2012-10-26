@@ -16,11 +16,11 @@ $(document).ready(function () {
             "caption": "Games",
             "url": "games.html",
             "children": [
-//                {
-//                    "caption": "Soccer",
-//                    "url": "soccer.html",
-//                    "icon": "soccer"
-//                },
+                {
+                    "caption": "Soccer",
+                    "url": "soccer.html",
+                    "icon": "soccer"
+                },
                 {
                     "caption": "Racing",
                     "icon": "car",
@@ -51,11 +51,11 @@ $(document).ready(function () {
                             "icon": "car"
                         }
                     ]
-//                },
-//                {
-//                    "caption": "Tennis",
-//                    "url": "tennis.html",
-//                    "action": "alert('Tennis Action')"
+                },
+                {
+                    "caption": "Tennis",
+                    "url": "tennis.html",
+                    "action": "alert('Tennis Action')"
                 }
             ]
         },

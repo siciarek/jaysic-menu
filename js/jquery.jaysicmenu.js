@@ -12,7 +12,7 @@
             var menu = this.renderMenu(config, true);
             this.container.append(menu);
 
-            $(".jaysic-menu li").click(function () {
+            $(".jaysic-menu li").mouseenter(function () {
                 var t = $(this);
                 var submenu = t.children("ul");
 
@@ -20,7 +20,7 @@
 
                     submenu.css({
                         left: t.position().left,
-                        top: t.position().top + t.parent().height() - 1
+                        top: t.position().top + t.parent().height()
                     });
 
                     var width = 0;
@@ -42,8 +42,8 @@
             });
 
             $(".jaysic-menu li").mouseleave(function () {
-//                var t = $(this);
-//                t.children("ul").hide();
+                var t = $(this);
+                t.children("ul").hide();
             });
 
         },
