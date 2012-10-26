@@ -1,36 +1,25 @@
+div.jaysic-menu > ul.root ul li.separator {
+    height: 0;
+    font-size: 0px;
+    line-height: 0px;
+    border-top:2px white groove;
+}
+
+div.jaysic-menu > ul.root ul li.separator:hover {
+    background: transparent;
+}
+
 div.jaysic-menu {
     font-family: Tahoma, Verdana, Arial, sans-serif;
     font-size: 11px;
+    background: #D4D0C8;
+    margin-top: 0;
 }
 
 div.jaysic-menu ul {
-    list-style: none;
-    width: auto;
-    margin: 0;
-    padding: 0;
-    vertical-align: middle;
+    margin-top: 0;
+    list-style-type: none;
     background: #D4D0C8;
-    border: 1px white outset;
-    box-shadow: 3px 3px 3px #888;
-    overflow: hidden;
-}
-
-div.jaysic-menu ul ul {
-    list-style: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin: 0;
-    padding: 0;
-}
-
-div.jaysic-menu ul.root {
-    height: 24px;
-    width: 100%;
-    border: 0;
-    border-bottom: 1px #898782 solid;
-    box-shadow: 0px 0px 0px #000;
-    float: left;
 }
 
 div.jaysic-menu ul li {
@@ -65,6 +54,37 @@ div.jaysic-menu ul li.has-children:hover {
     background-image: url(../images/icons/has-children-on.png);
 }
 
+div.jaysic-menu > ul.root ul {
+    position: absolute;
+    display: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    background: #D4D0C8;
+    border: 1px white outset;
+    box-shadow: 3px 3px 3px #888;
+    overflow: hidden;
+    left: 0;
+    top: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div.jaysic-menu ul.root {
+    position: relative;
+    height: 24px;
+    width: 100%;
+    border: 0;
+    vertical-align: middle;
+    border: 1px white outset;
+    border-bottom: 1px #898782 solid;
+    box-shadow: 0px 0px 0px #000;
+    float: left;
+    /*margin-top: 1px;*/
+}
+
+
 div.jaysic-menu ul.root > li > div {
     padding-left: 0px;
     padding-bottom: 3px;
@@ -74,16 +94,9 @@ div.jaysic-menu ul.root > li > div.icon {
     padding-left: 24px;
 }
 
-div.jaysic-menu ul li:hover {
+div.jaysic-menu ul.root ul li:hover {
     background-color: #0A246A;
     color: white;
-}
-
-div.jaysic-menu ul.root > li {
-    min-width: auto;
-    padding: 4px 10px 9px 8px;
-    clear: none;
-    margin: 0;
 }
 
 div.jaysic-menu ul.root > li:hover > div {
@@ -94,6 +107,13 @@ div.jaysic-menu ul.root > li:hover > div {
 
 div.jaysic-menu ul.root > li:hover > div.icon {
     padding-left: 23px;
+}
+
+div.jaysic-menu ul.root > li {
+    min-width: inherit;
+    padding: 3px 10px 0px 8px;
+    clear: none;
+    margin: 0;
 }
 
 div.jaysic-menu ul.root > li:hover {

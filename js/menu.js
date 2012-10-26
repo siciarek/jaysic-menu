@@ -16,11 +16,11 @@ $(document).ready(function () {
             "caption": "Games",
             "url": "games.html",
             "children": [
-                {
-                    "caption": "Soccer",
-                    "url": "soccer.html",
-                    "icon": "soccer"
-                },
+//                {
+//                    "caption": "Soccer",
+//                    "url": "soccer.html",
+//                    "icon": "soccer"
+//                },
                 {
                     "caption": "Racing",
                     "icon": "car",
@@ -33,13 +33,29 @@ $(document).ready(function () {
                         {
                             "caption": "NASCAR",
                             "icon": "car"
+                        },
+                        {
+                            "caption": "NASCAR",
+                            "icon": "car"
+                        },
+                        {
+                            "caption": "NASCAR",
+                            "icon": "car"
+                        },
+                        {
+                            "caption": "NASCAR",
+                            "icon": "car"
+                        },
+                        {
+                            "caption": "NASCAR",
+                            "icon": "car"
                         }
                     ]
-                },
-                {
-                    "caption": "Tennis",
-                    "url": "tennis.html",
-                    "action": "alert('Tennis Action')"
+//                },
+//                {
+//                    "caption": "Tennis",
+//                    "url": "tennis.html",
+//                    "action": "alert('Tennis Action')"
                 }
             ]
         },
@@ -52,10 +68,14 @@ $(document).ready(function () {
                     "url": "france.html",
                     "icon": "france"
                 },
+                '-',
                 {
                     "caption": "Poland",
                     "url": "poland.html",
                     "icon": "poland"
+                },
+                {
+                    "type": "separator"
                 },
                 {
                     "caption": "Germany",

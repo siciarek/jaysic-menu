@@ -12,7 +12,7 @@
             var menu = this.renderMenu(config, true);
             this.container.append(menu);
 
-            $(".jaysic-menu li").mouseenter(function () {
+            $(".jaysic-menu li").click(function () {
                 var t = $(this);
                 var submenu = t.children("ul");
 
@@ -29,19 +29,6 @@
                     for (i = 0; i < submenu.children().length; i++) {
                         var child = $(submenu.children()[i]);
 
-                        if(child.text() === "NASCAR") {
-
-                            console.log(submenu);
-
-                            submenu.css({
-                                left: 100,
-                                top: 200
-                            });
-
-                            submenu.show();
-                            return;
-                        }
-
                         var xwidth = child.width();
                         width = (xwidth > width) ? xwidth : width;
                     }
@@ -55,8 +42,8 @@
             });
 
             $(".jaysic-menu li").mouseleave(function () {
-                var t = $(this);
-                t.children("ul").hide();
+//                var t = $(this);
+//                t.children("ul").hide();
             });
 
         },
@@ -72,34 +59,43 @@
             for (var i = 0; i < children.length; i++) {
                 var element = children[i];
 
-                var hasChildren = typeof element.children !== "undefined";
-                var hasUrl = typeof element.url !== "undefined";
-                var hasAction = typeof element.action !== "undefined";
-                var hasIcon = typeof element.icon !== "undefined";
-
+                var isSeparator = element === "-" || (typeof element.type !== null && element.type === "separator");
                 var menu = document.createElement("li");
-                var text = document.createTextNode(element.caption);
-                var link = document.createElement("div");
 
-                link.appendChild(text);
-                menu.appendChild(link);
-
-                if (hasAction && hasChildren === false) {
-                    menu.setAttribute("onclick", element.action);
+                if(isSeparator) {
+                    menu.setAttribute("class", "separator");
                 }
-                else if (hasUrl && hasChildren === false) {
-                    menu.setAttribute("onclick", "location.href='" + element.url + "'");
-                }
+                else
+                {
+                    var hasChildren = typeof element.children !== "undefined";
+                    var hasUrl = typeof element.url !== "undefined";
+                    var hasAction = typeof element.action !== "undefined";
+                    var hasIcon = typeof element.icon !== "undefined";
 
-                if (hasIcon === true) {
-                    link.setAttribute("class", "icon icon-" + element.icon);
-                }
+                    var text = document.createTextNode(element.caption);
+                    var link = document.createElement("div");
 
-                if (hasChildren === true) {
-                    menu.appendChild(this.renderMenu(element.children, false));
-                    if(root === false) {
-                        menu.setAttribute("class", "has-children");
+                    link.appendChild(text);
+                    menu.appendChild(link);
+
+                    if (hasAction && hasChildren === false) {
+                        menu.setAttribute("onclick", element.action);
                     }
+                    else if (hasUrl && hasChildren === false) {
+                        menu.setAttribute("onclick", "location.href='" + element.url + "'");
+                    }
+
+                    if (hasIcon === true) {
+                        link.setAttribute("class", "icon icon-" + element.icon);
+                    }
+
+                    if (hasChildren === true) {
+                        menu.appendChild(this.renderMenu(element.children, false));
+                        if(root === false) {
+                            menu.setAttribute("class", "has-children");
+                        }
+                    }
+
                 }
 
                 container.appendChild(menu);
