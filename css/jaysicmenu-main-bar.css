@@ -1,0 +1,60 @@
+/* MAIN MENU BAR*/
+
+div.jaysic-menu ul:first-child {
+    position: relative;
+    height: 23px;
+    width: 100%;
+    border: 0;
+    vertical-align: middle;
+    border-top: 1px white outset;
+    border-bottom: 1px #898782 solid;
+    padding-top: 1px;
+    padding-left: 0px;
+    box-shadow: 0px 0px 0px #000;
+    float: left;
+}
+
+/* MAIN MENU BAR ELEMENTS: */
+
+div.jaysic-menu ul:first-child > li,
+div.jaysic-menu ul:first-child > li.active
+{
+    min-width: inherit;
+    clear: none;
+    margin: 0;
+
+    padding-top: 3px;
+    padding-bottom: 0;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+div.jaysic-menu ul:first-child > li:hover {
+    background-color: transparent;
+    border: 1px white outset;
+    color: black;
+
+    padding-top: 2px;
+    padding-bottom: 0;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+div.jaysic-menu ul:first-child > li.active:hover {
+    border: 1px white inset;
+}
+
+/* MAIN MENU BAR ELEMENT CONTENT: */
+
+div.jaysic-menu ul:first-child > li > div {
+    background-position: 0px 0px;
+    padding-bottom: 3px;
+
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+div.jaysic-menu ul:first-child > li > div.icon {
+    padding-left: 21px;
+    padding-right: 0;
+}

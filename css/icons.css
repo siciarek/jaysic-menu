@@ -1,3 +1,19 @@
+
+
+.icon-share-document {
+    background-image: url(../images/icons/share-document.png) !important;
+}
+
+.icon-phpmyadmin {
+    background-image: url(../images/icons/phpmyadmin.png) !important;
+}
+
+.icon-kontaktoria {
+    background-image: url(../images/icons/kontaktoria.png) !important;
+}
+
+
+/* ALEJANDRO SET */
 .icon-home {
     background-image: url(../images/icons/home.png) !important;
 }

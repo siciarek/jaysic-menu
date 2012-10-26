@@ -1,0 +1,32 @@
+/* MENU SEPARATORS */
+
+div.jaysic-menu li.separator.horizontal {
+    width: 97%;
+    height: 2px;
+    margin: 2px 0 2px 3px;
+
+    padding: 0;
+    background-repeat: repeat-x;
+    background-position: center;
+    background-image: url(../images/icons/separator-horizontal.png);
+
+    font-size: 0;
+    line-height: 0;
+}
+
+div.jaysic-menu li.separator.vertical {
+    width: 7px;
+    height: 16px;
+    margin-top: 3px;
+    margin-right: 0;
+
+    padding: 0;
+    background-repeat: repeat-y;
+    background-position: center;
+    background-image: url(../images/icons/separator-vertical.png);
+}
+
+div.jaysic-menu li.separator.vertical:hover {
+    padding: 0;
+    border: 0;
+}

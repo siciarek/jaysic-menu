@@ -1,35 +1,10 @@
-div.jaysic-menu ul:first-child > li.separator.vertical {
-    width: 7px;
-    height: 16px;
-    margin-top: 3px;
-    padding:0;
-    background-repeat: repeat-y;
-    background-position: center;
-    background-image: url(../images/icons/separator-vertical.png);
-}
-
-div.jaysic-menu ul:first-child > li.separator.vertical:hover {
-    border: 0;
-}
-
-div.jaysic-menu li.separator.horizontal {
-    width: 97%;
-    height: 0;
-    font-size: 0px;
-    line-height: 0px;
-    margin: 2px 0px 2px 3px;
-    padding: 0px 0px 0px 0px;
-    border-top: 2px white groove;
-}
-
-div.jaysic-menu li.separator:hover {
-    background: transparent;
-}
+/* BASIC MENU STYLE */
 
 div.jaysic-menu {
     font-family: Tahoma, Verdana, Arial, sans-serif;
     font-size: 11px;
     background: #D4D0C8;
+    color: black;
     margin-top: 0;
 }
 
@@ -40,7 +15,6 @@ div.jaysic-menu ul {
 }
 
 div.jaysic-menu ul li {
-    color: black;
     background: transparent;
     margin: 0;
     cursor: default;
@@ -53,13 +27,7 @@ div.jaysic-menu ul li {
     margin: 2px;
 }
 
-div.jaysic-menu ul li div {
-    background-repeat: no-repeat;
-    background-position: 3px 0px;
-    padding: 0px 0px 1px 24px;
-    width: 100%;
-    float: left;
-}
+/* MENU ELEMENTS WITH SUBMENUS (ARROW) */
 
 div.jaysic-menu ul li.has-children {
     background-repeat: no-repeat;
@@ -71,12 +39,12 @@ div.jaysic-menu ul li.has-children:hover {
     background-image: url(../images/icons/has-children-on.png);
 }
 
-div.jaysic-menu > ul.root ul {
+/* DROP DOWN MENU */
+
+div.jaysic-menu > ul:first-child ul {
     position: absolute;
     display: none;
     width: auto;
-    margin: 0;
-    padding: 0;
     vertical-align: middle;
     background: #D4D0C8;
     border: 1px white outset;
@@ -88,54 +56,25 @@ div.jaysic-menu > ul.root ul {
     padding: 0;
 }
 
-div.jaysic-menu ul.root {
-    position: relative;
-    height: 23px;
-    width: 100%;
-    border: 0;
-    vertical-align: middle;
-    border-top: 1px white outset;
-    border-bottom: 1px #898782 solid;
-    padding-top: 1px;
-    box-shadow: 0px 0px 0px #000;
-    float: left;
-}
+/* DROP DOWN MENU ELEMENTS */
 
-
-div.jaysic-menu ul.root > li > div {
-    padding-left: 0px;
-    padding-bottom: 3px;
-}
-
-div.jaysic-menu ul.root > li > div.icon {
-    padding-left: 24px;
-}
-
-div.jaysic-menu ul.root ul li:hover {
+div.jaysic-menu ul:first-child li:hover {
     background-color: #0A246A;
     color: white;
 }
 
-div.jaysic-menu ul.root > li:hover > div {
-    background-position: 2px 0px;
-    padding-left: 0px;
-    margin-top: -1px;
+/* MENU ELEMENT CONTENT: */
+
+div.jaysic-menu ul li div {
+    background-repeat: no-repeat;
+    background-position: 3px 0px;
+
+    width: 100%;
+    float: left;
+
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 1px;
+    padding-left: 24px;
 }
 
-div.jaysic-menu ul.root > li:hover > div.icon {
-    padding-left: 23px;
-}
-
-div.jaysic-menu ul.root > li {
-    min-width: inherit;
-    padding: 3px 10px 0px 8px;
-    clear: none;
-    margin: 0;
-}
-
-div.jaysic-menu ul.root > li:hover {
-    background-color: transparent;
-    /*border: 1px white outset;*/
-    border: 1px white inset;
-    color: black;
-}
