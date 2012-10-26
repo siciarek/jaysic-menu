@@ -63,7 +63,8 @@
                 var menu = document.createElement("li");
 
                 if(isSeparator) {
-                    menu.setAttribute("class", "separator");
+                    var separator = root === true ? "vertical" : "horizontal";
+                    menu.setAttribute("class", "separator " + separator);
                 }
                 else
                 {

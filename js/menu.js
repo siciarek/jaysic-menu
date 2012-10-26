@@ -12,6 +12,7 @@ $(document).ready(function () {
             "url": "index.html",
             "action": "tennisAction()"
         },
+        '-',
         {
             "caption": "Games",
             "url": "games.html",

@@ -1,4 +1,18 @@
-div.jaysic-menu > ul.root ul li.separator {
+div.jaysic-menu ul:first-child > li.separator.vertical {
+    width: 7px;
+    height: 16px;
+    margin-top: 3px;
+    padding:0;
+    background-repeat: repeat-y;
+    background-position: center;
+    background-image: url(../images/icons/separator-vertical.png);
+}
+
+div.jaysic-menu ul:first-child > li.separator.vertical:hover {
+    border: 0;
+}
+
+div.jaysic-menu li.separator.horizontal {
     width: 97%;
     height: 0;
     font-size: 0px;
@@ -8,7 +22,7 @@ div.jaysic-menu > ul.root ul li.separator {
     border-top: 2px white groove;
 }
 
-div.jaysic-menu > ul.root ul li.separator:hover {
+div.jaysic-menu li.separator:hover {
     background: transparent;
 }
 
