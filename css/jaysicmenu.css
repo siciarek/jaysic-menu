@@ -36,18 +36,42 @@ div.jaysic-menu ul.root {
 div.jaysic-menu ul li {
     color: black;
     background: transparent;
-    background-repeat: no-repeat;
-    background-position: 6px 4px;
-    padding: 0px 0px 0px 28px;
     margin: 0;
     cursor: default;
     vertical-align: middle;
     width: auto;
     float: left;
-    padding: 4px 16px 4px 28px;
+    padding: 2px 24px 4px 0px;
     clear: both;
-    min-width: 150px;
+    min-width: 171px;
     margin: 2px;
+}
+
+div.jaysic-menu ul li div {
+    background-repeat: no-repeat;
+    background-position: 3px 0px;
+    padding: 0px 0px 1px 24px;
+    width: 100%;
+    float: left;
+}
+
+div.jaysic-menu ul li.has-children {
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-image: url(../images/icons/has-children-off.png);
+}
+
+div.jaysic-menu ul li.has-children:hover {
+    background-image: url(../images/icons/has-children-on.png);
+}
+
+div.jaysic-menu ul.root > li > div {
+    padding-left: 0px;
+    padding-bottom: 3px;
+}
+
+div.jaysic-menu ul.root > li > div.icon {
+    padding-left: 24px;
 }
 
 div.jaysic-menu ul li:hover {
@@ -55,60 +79,25 @@ div.jaysic-menu ul li:hover {
     color: white;
 }
 
-div.jaysic-menu ul li:last-child {
-    padding-bottom: 6px;
-}
-
 div.jaysic-menu ul.root > li {
     min-width: auto;
-    padding: 4px 10px 9px 28px;
+    padding: 4px 10px 9px 8px;
     clear: none;
     margin: 0;
 }
 
-div.jaysic-menu ul.root > li:hover {
-    background-color: transparent;
-    border: 1px white inset;
-    color: black;
+div.jaysic-menu ul.root > li:hover > div {
+    background-position: 2px 0px;
+    padding-left: 0px;
+    margin-top: -1px;
 }
 
+div.jaysic-menu ul.root > li:hover > div.icon {
+    padding-left: 23px;
+}
 
-/*div.jaysic-menu ul ul li:last-child {*/
-    /*padding-bottom: 6px;*/
-/*}*/
-
-/*div.jaysic-menu ul ul li {*/
-    /*cursor: pointer;*/
-    /*display: block;*/
-    /*color: black;*/
-    /*width: 100%;*/
-    /*text-decoration: none;*/
-    /*background-repeat: no-repeat;*/
-    /*padding: 4px 12px 4px 32px;*/
-/*}*/
-
-/*div.jaysic-menu ul ul li:hover {*/
-    /*color: white;*/
-    /*background: #0A246A;*/
-/*}*/
-
-
-/* Links */
-
-/*div.jaysic-menu span*/
-/*{*/
-    /*display: block;*/
-    /*color: black;*/
-    /*text-decoration: none;*/
-    /*background-repeat: no-repeat;*/
-    /*padding: 4px 12px 4px 32px;*/
-/*}*/
-
-/*div.jaysic-menu span span:hover*/
-/*{*/
-    /*text-decoration: underline;*/
-    /*color: white;*/
-/*}*/
-
-
-
+div.jaysic-menu ul.root > li:hover {
+    background-color: transparent;
+    border: 1px white outset;
+    color: black;
+}

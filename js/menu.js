@@ -8,15 +8,13 @@ $(document).ready(function () {
 
    $.jaysic.menu([
         {
-            "caption": "Home",
+            "caption": "Start",
             "url": "index.html",
-            "icon": "home",
             "action": "tennisAction()"
         },
         {
             "caption": "Games",
             "url": "games.html",
-            "icon": "soccer",
             "children": [
                 {
                     "caption": "Soccer",
@@ -55,14 +53,14 @@ $(document).ready(function () {
                     "icon": "france"
                 },
                 {
-                    "caption": "Germany",
-                    "url": "germanu.html",
-                    "icon": "germany"
-                },
-                {
                     "caption": "Poland",
                     "url": "poland.html",
                     "icon": "poland"
+                },
+                {
+                    "caption": "Germany",
+                    "url": "germanu.html",
+                    "icon": "germany"
                 }
             ]
         },

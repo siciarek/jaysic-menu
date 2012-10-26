@@ -12,28 +12,49 @@
             var menu = this.renderMenu(config, true);
             this.container.append(menu);
 
-            $(".jaysic-menu li").mouseenter(function() {
+            $(".jaysic-menu li").mouseenter(function () {
                 var t = $(this);
                 var submenu = t.children("ul");
 
-                submenu.css({
-                    left: t.position().left,
-                    top: t.position().top + t.parent().height() - 1
-                });
+                if (submenu.length > 0) {
 
-                var width = 0;
+                    submenu.css({
+                        left: t.position().left,
+                        top: t.position().top + t.parent().height() - 1
+                    });
 
-                for(i = 0; i < submenu.children().length; i++) {
-                    var xwidth = $(submenu.children()[i]).width();
-                    width = (xwidth > width) ? xwidth : width;
+                    var width = 0;
+                    var minWidth = parseInt($(submenu.children()[0]).css("min-width"));
+
+                    for (i = 0; i < submenu.children().length; i++) {
+                        var child = $(submenu.children()[i]);
+
+                        if(child.text() === "NASCAR") {
+
+                            console.log(submenu);
+
+                            submenu.css({
+                                left: 100,
+                                top: 200
+                            });
+
+                            submenu.show();
+                            return;
+                        }
+
+                        var xwidth = child.width();
+                        width = (xwidth > width) ? xwidth : width;
+                    }
+
+                    if(width > minWidth) {
+                        submenu.children().width(width);
+                    }
+
+                    submenu.show();
                 }
-
-                submenu.children().width(width);
-
-                submenu.show();
             });
 
-            $(".jaysic-menu li").mouseleave(function() {
+            $(".jaysic-menu li").mouseleave(function () {
                 var t = $(this);
                 t.children("ul").hide();
             });
@@ -44,7 +65,7 @@
 
             var container = document.createElement("ul");
 
-            if(root == true) {
+            if (root == true) {
                 container.setAttribute("class", "root");
             }
 
@@ -58,7 +79,7 @@
 
                 var menu = document.createElement("li");
                 var text = document.createTextNode(element.caption);
-                var link = document.createElement("span");
+                var link = document.createElement("div");
 
                 link.appendChild(text);
                 menu.appendChild(link);
@@ -71,11 +92,14 @@
                 }
 
                 if (hasIcon === true) {
-                    menu.setAttribute("class", "icon icon-" + element.icon);
+                    link.setAttribute("class", "icon icon-" + element.icon);
                 }
 
                 if (hasChildren === true) {
                     menu.appendChild(this.renderMenu(element.children, false));
+                    if(root === false) {
+                        menu.setAttribute("class", "has-children");
+                    }
                 }
 
                 container.appendChild(menu);
