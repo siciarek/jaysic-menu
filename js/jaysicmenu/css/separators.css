@@ -1,4 +1,8 @@
-/* MENU SEPARATORS */
+/**
+ * Menu separators
+ */
+
+@charset "UTF-8";
 
 div.jaysic-menu li.separator.horizontal {
     width: 97%;

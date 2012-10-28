@@ -1,12 +1,54 @@
+var scripts = document.getElementsByTagName("script");
+var path = scripts[scripts.length - 1].src.split("?")[0];
+var mydir = path.split('/').slice(0, -1).join('/');
+var csspath = mydir + "/css/";
+
 (function ($) {
 
     $.jaysic = {
+
+        printable: false,
 
         temp: 0,
 
         active: false,
 
         container: null,
+
+        init: function () {
+
+            var stylesheets = [
+                "icons",
+                "base",
+                "top-menu-bar",
+                "submenu",
+                "separators",
+                "print"
+            ];
+
+            var head = document.getElementsByTagName("head")[0];
+            var stylesheet;
+            var cssfile;
+            var style;
+
+            while (stylesheets.length) {
+                style = stylesheets.shift();
+
+                cssfile = csspath + style + ".css";
+
+                stylesheet = document.createElement("link");
+                stylesheet.setAttribute("rel", "stylesheet");
+                stylesheet.setAttribute("type", "text/css");
+
+                if(this.printable === false) {
+                    stylesheet.setAttribute("media", style === "print" ? "print" : "screen");
+                }
+
+                stylesheet.setAttribute("href", cssfile);
+
+                head.appendChild(stylesheet);
+            }
+        },
 
         menuItemHandler: function (t) {
 
@@ -44,6 +86,9 @@
 
         menu: function (config, renderTo) {
             renderTo = renderTo || "menu";
+
+            $.jaysic.init();
+
             this.container = $("#" + renderTo);
 
             this.container.addClass("jaysic-menu");
@@ -128,7 +173,6 @@
             for (var i = 0; i < children.length; i++) {
                 var element = children[i];
 
-
                 var isSeparator = element === "-" || (typeof element.type !== null && element.type === "separator");
                 var hasChildren = typeof element.menu !== "undefined";
                 var hasUrl = typeof element.url !== "undefined";
@@ -145,7 +189,7 @@
                 }
                 else {
 
-                    if(typeof element.caption === "undefined") {
+                    if (typeof element.caption === "undefined") {
                         throw "Invalid menu definition";
                     }
 
@@ -189,5 +233,4 @@
         }
     }
 
-})
-    (jQuery);
+})(jQuery);

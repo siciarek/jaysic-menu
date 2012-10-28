@@ -1,0 +1,9 @@
+/**
+ * Skip printing menu
+ */
+
+@charset "UTF-8";
+
+div.jaysic-menu {
+    display: none;
+}

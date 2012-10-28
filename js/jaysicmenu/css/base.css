@@ -1,6 +1,8 @@
 /**
  * Base container style:
  */
+@charset "UTF-8";
+
 div.jaysic-menu {
     font-family: Tahoma, Verdana, Arial, sans-serif;
     font-size: 11px;
@@ -18,7 +20,7 @@ div.jaysic-menu li.disabled:hover div {
 
 div.jaysic-menu ul:first-child > li.disabled {
     padding-top: 3px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     padding-right: 4px;
     padding-left: 4px;
     border: none;
@@ -27,7 +29,7 @@ div.jaysic-menu ul:first-child > li.disabled {
 div.jaysic-menu ul:first-child > li.disabled:hover {
     background-position: 3px 2px;
     padding-top: 3px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     padding-right: 4px;
     padding-left: 4px;
     border: none;
@@ -36,7 +38,6 @@ div.jaysic-menu ul:first-child > li.disabled:hover {
 div.jaysic-menu ul:first-child > li.disabled:hover div {
     text-shadow: 1px 1px white;
 }
-
 
 div.jaysic-menu ul:first-child > li.icon.disabled {
     padding-left: 21px;

@@ -1,6 +1,8 @@
 /**
  * Submenu style:
  */
+@charset "UTF-8";
+
 div.jaysic-menu ul {
     display: none;
     position: absolute;

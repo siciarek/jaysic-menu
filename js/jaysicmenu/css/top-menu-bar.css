@@ -1,6 +1,8 @@
 /**
  * Menu bar style:
  */
+@charset "UTF-8";
+
 div.jaysic-menu ul:first-child {
     position: relative;
     display: block;
@@ -10,8 +12,8 @@ div.jaysic-menu ul:first-child {
     border-top: 1px white outset;
     border-bottom: 1px #898782 solid;
     padding-top: 1px;
-    padding-left: 0px;
-    box-shadow: 0px 0px 0px #000;
+    padding-left: 0;
+    box-shadow: 0 0 0 #000;
 }
 
 div.jaysic-menu ul:first-child > li {
@@ -23,7 +25,7 @@ div.jaysic-menu ul:first-child > li {
     height: 16px;
 
     padding-top: 3px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     padding-right: 4px;
     padding-left: 4px;
 
