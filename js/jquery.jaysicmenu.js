@@ -1,16 +1,5 @@
 (function ($) {
 
-    jQuery.extend(jQuery.fn, {
-        // Name of our method & one argument (the parent selector)
-        hasParent: function (p) {
-            // Returns a subset of items using jQuery.filter
-            return this.filter(function () {
-                // Return truthy/falsey based on presence in parent
-                return $(p).find(this).length;
-            });
-        }
-    });
-
     $.jaysic = {
 
         temp: 0,
@@ -23,6 +12,40 @@
             ellip: "…"
         },
 
+        menuItemHandler: function (t) {
+
+            if ($.jaysic.active === false) {
+                return;
+            }
+
+            var submenu = t.children("ul");
+
+            if (submenu.length > 0) {
+
+                var submenuLeft = t.position().left + 1;
+                var submenuTop = t.position().top + t.height() + 7;
+
+                if (t.hasClass("has-children") === true) {
+                    submenuLeft += t.parent().width() - 7;
+                    submenuTop = t.position().top - 2;
+                }
+
+                submenu.css({
+                    left: submenuLeft,
+                    top: submenuTop
+                });
+
+                submenu.show();
+            }
+        },
+
+        hideAllSubmenus: function () {
+            var allmenus = $(".jaysic-menu ul");
+            var menubar = $(".jaysic-menu > ul:first-child");
+            allmenus.hide();
+            menubar.show();
+        },
+
         menu: function (config, renderTo) {
             renderTo = renderTo || "menu";
             this.container = $("#" + renderTo);
@@ -31,7 +54,33 @@
             var menu = this.renderMenu(config, true);
             this.container.append(menu);
 
-            $(".jaysic-menu ul:first-child > li").click(function () {
+            var page = $("*");
+            var menubar = $(".jaysic-menu ul:first-child > li");
+            var submenu = $(".jaysic-menu ul:not(:first-child) > li");
+
+
+
+            // Check if you clicked inside the menu area:
+
+            page.mousedown(function () {
+                $.jaysic.temp |= $(this).parents("div.jaysic-menu").length;
+            });
+
+            page.mouseup(function () {
+                if ($(this).prop("tagName").toLowerCase() === "html") {
+                    $.jaysic.active = $.jaysic.temp === 1;
+                    if ($.jaysic.active === false) {
+                        var positions = $(".jaysic-menu ul:first-child").children();
+                        positions.removeClass("active");
+                        $.jaysic.hideAllSubmenus();
+                    }
+                    $.jaysic.temp = 0;
+                }
+            });
+
+            // Menu bar handling:
+
+            menubar.click(function () {
                 $.jaysic.active = true;
                 var positions = $(".jaysic-menu ul:first-child").children();
                 var i;
@@ -42,63 +91,32 @@
                     }
                     position.addClass("active");
                 }
-                $(this).trigger("mouseover");
+                $(this).trigger("mouseenter");
             });
 
-            $("*").mousedown(function () {
-                $.jaysic.temp |= $(this).hasParent("div.jaysic-menu").length;
-            })
-            .mouseup(function () {
-                if($(this).prop("tagName").toLowerCase() === "html") {
-                    $.jaysic.active = $.jaysic.temp === 1;
-                    if($.jaysic.active === false) {
-                        var positions = $(".jaysic-menu ul:first-child").children();
-                        positions.removeClass("active");
-                    }
-                    $.jaysic.temp = 0;
+            menubar.mouseenter(function () {
+
+                $.jaysic.hideAllSubmenus();
+
+                if ($.jaysic.active === true) {
+                    $.jaysic.menuItemHandler($(this));
                 }
             });
 
-            $(".jaysic-menu li").mouseenter(function () {
+            // Menu items handling:
+            submenu.click(function () {
+                $.jaysic.hideAllSubmenus();
+            });
 
-                if ($.jaysic.active === false) {
-
-                    return;
-                }
-
+            submenu.mouseenter(function () {
                 var t = $(this);
-                var submenu = t.children("ul");
 
-                if (submenu.length > 0) {
+                t.siblings().children("ul").hide();
 
-                    submenu.css({
-                        left: t.position().left,
-                        top: t.position().top + t.parent().height()
-                    });
-
-                    var width = 0;
-                    var minWidth = parseInt($(submenu.children()[0]).css("min-width"));
-
-                    for (i = 0; i < submenu.children().length; i++) {
-                        var child = $(submenu.children()[i]);
-
-                        var xwidth = child.width();
-                        width = (xwidth > width) ? xwidth : width;
-                    }
-
-                    if (width - 24 > minWidth) {
-                        submenu.children().width(width);
-                    }
-
-                    submenu.show();
+                if ($.jaysic.active === true) {
+                    $.jaysic.menuItemHandler(t);
                 }
             });
-
-            $(".jaysic-menu li").mouseleave(function () {
-                var t = $(this);
-                t.children("ul").hide();
-            });
-
         },
 
         renderMenu: function (children, root) {
@@ -111,6 +129,7 @@
                 var element = children[i];
 
                 var isSeparator = element === "-" || (typeof element.type !== null && element.type === "separator");
+
                 var menu = document.createElement("li");
 
                 if (isSeparator) {
@@ -118,7 +137,8 @@
                     menu.setAttribute("class", "separator " + separator);
                 }
                 else {
-                    var hasChildren = typeof element.children !== "undefined";
+
+                    var hasChildren = typeof element.menu !== "undefined";
                     var hasUrl = typeof element.url !== "undefined";
                     var hasAction = typeof element.action !== "undefined";
                     var hasIcon = typeof element.icon !== "undefined";
@@ -137,18 +157,17 @@
                     }
 
                     if (hasIcon === true) {
-                        link.setAttribute("class", "icon icon-" + element.icon);
+                        menu.setAttribute("class", "icon icon-" + element.icon);
                     }
 
                     if (hasChildren === true) {
-                        menu.appendChild(this.renderMenu(element.children));
+                        menu.appendChild(this.renderMenu(element.menu));
                         if (root === false) {
-                            menu.setAttribute("class", "has-children");
+                            var c = "has-children " + menu.getAttribute("class");
+                            menu.setAttribute("class", c);
                         }
                     }
-
                 }
-
                 container.appendChild(menu);
             }
 

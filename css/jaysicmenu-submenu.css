@@ -1,0 +1,58 @@
+/**
+ * Submenu style:
+ */
+div.jaysic-menu ul {
+    display: none;
+    position: absolute;
+    width: auto;
+    list-style: none;
+    margin-top: 0;
+    margin: 0;
+    padding: 0;
+    background: #D4D0C8;
+    border: 1px white outset;
+    box-shadow: 3px 3px 3px #888;
+}
+
+div.jaysic-menu li {
+    cursor: default;
+    margin: 0;
+    border: 0;
+    min-width: 155px;
+    width: auto;
+    height: 18px;
+
+    padding-top: 1px;
+    padding-bottom: 0;
+    padding-right: 3px;
+    padding-left: 21px;
+
+    float: none;
+    color: black !important;
+}
+
+div.jaysic-menu li:last-child {
+    padding-bottom: 5px;
+}
+
+div.jaysic-menu li.icon {
+    background-repeat: no-repeat;
+    background-position: 3px 2px;
+    color: black !important;
+}
+
+div.jaysic-menu ul > li:hover {
+    background-color: #0A246A;
+    color: white !important;
+}
+
+div.jaysic-menu li.has-children > div  {
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-image: url(../images/icons/has-children-off.png);
+}
+
+div.jaysic-menu li.has-children:hover > div  {
+    color: white;
+    background-image: url(../images/icons/has-children-on.png);
+}

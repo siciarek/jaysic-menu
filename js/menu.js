@@ -1,7 +1,5 @@
 function tennisAction() {
-    var x = $(".jaysic-menu .root").children();
-
-    console.log(x);
+    console.log("Tennis Action");
 }
 
 var favourites = [
@@ -28,7 +26,7 @@ var favourites = [
 var firefox = [
     {
         "caption": "Plik",
-        "children": [
+        "menu": [
             {"caption":"Nowa karta"},
             {"caption":"Nowe okno"},
             {"caption":"Otwórz plik"},
@@ -67,50 +65,76 @@ var firefox = [
 var ironmenu = [
     {
         "caption": "Start",
-//        "url": "index.html",
+        "url": "index.html",
         "action": "tennisAction()"
     },
     '-',
     {
         "caption": "Games",
-//        "url": "games.html",
-        "children": [
+        "menu": [
             {
                 "caption": "Soccer",
-//                "url": "soccer.html",
-                "icon": "soccer"
+                "icon": "soccer",
+                "url": "http://en.wikipedia.org/wiki/Association_football"
             },
+            "-",
             {
                 "caption": "Racing",
                 "icon": "car",
-                "children": [
+                "menu": [
                     {
                         "caption": "F1",
-                        "url": "racing-f1.html",
-                        "icon": "car"
+                        "icon": "car",
+                        "menu": [
+                            {
+                                "caption": "France",
+                                "url": "http://en.wikipedia.org/wiki/France",
+                                "icon": "france"
+                            },
+                            '-',
+                            {
+                                "caption": "Poland",
+                                "url": "http://en.wikipedia.org/wiki/Poland",
+                                "icon": "poland"
+                            },
+                            {
+                                "type": "separator"
+                            },
+                            {
+                                "caption": "Germany",
+                                "url": "http://en.wikipedia.org/wiki/Germany",
+                                "icon": "germany"
+                            }
+                        ]
                     },
                     {
                         "caption": "NASCAR",
-                        "icon": "car"
-                    },
-                    {
-                        "caption": "NASCAR",
-                        "icon": "car"
-                    },
-                    {
-                        "caption": "NASCAR",
-                        "icon": "car"
-                    },
-                    {
-                        "caption": "NASCAR",
-                        "icon": "car"
-                    },
-                    {
-                        "caption": "NASCAR",
-                        "icon": "car"
+                        "icon": "car",
+                        "menu": [
+                            {
+                                "caption": "France",
+                                "url": "http://en.wikipedia.org/wiki/France",
+                                "icon": "france"
+                            },
+                            '-',
+                            {
+                                "caption": "Poland",
+                                "url": "http://en.wikipedia.org/wiki/Poland",
+                                "icon": "poland"
+                            },
+                            {
+                                "type": "separator"
+                            },
+                            {
+                                "caption": "Germany",
+                                "url": "http://en.wikipedia.org/wiki/Germany",
+                                "icon": "germany"
+                            }
+                        ]
                     }
                 ]
             },
+            "-",
             {
                 "caption": "Tennis",
 //                "url": "tennis.html",
@@ -121,16 +145,16 @@ var ironmenu = [
     {
         "caption": "Countries",
         "icon": "world",
-        "children": [
+        "menu": [
             {
                 "caption": "France",
-//                "url": "france.html",
+                "url": "http://en.wikipedia.org/wiki/France",
                 "icon": "france"
             },
             '-',
             {
                 "caption": "Poland",
-//                "url": "poland.html",
+                "url": "http://en.wikipedia.org/wiki/Poland",
                 "icon": "poland"
             },
             {
@@ -138,17 +162,35 @@ var ironmenu = [
             },
             {
                 "caption": "Germany",
-//                "url": "germanu.html",
+                "url": "http://en.wikipedia.org/wiki/Germany",
                 "icon": "germany"
             }
         ]
     },
     {
         "caption": "Logout",
-//        "url": "logout.html",
+        "action": "alert('Logout Action')",
         "icon": "logout"
     }
 ];
+
+var simple = [
+    {
+        "caption" : "Nowa karta",
+        "icon": "soccer"
+    },
+    {
+        "caption" : "Nowe okno",
+        "icon": "car"
+    },
+    {
+        "caption" : "Otwórz plik"
+    },
+    {
+        "caption" : "Zakończ"
+    }
+];
+
 
 $(document).ready(function () {
     $.jaysic.menu(ironmenu);
