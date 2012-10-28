@@ -5,7 +5,10 @@ var csspath = mydir + "/css/";
 
 (function ($) {
 
-    $.jaysic = {
+    $.jaysic = {};
+
+
+    $.jaysic.menu = {
 
         printable: false,
 
@@ -52,7 +55,7 @@ var csspath = mydir + "/css/";
 
         menuItemHandler: function (t) {
 
-            if ($.jaysic.active === false) {
+            if ($.jaysic.menu.active === false) {
                 return;
             }
 
@@ -84,10 +87,10 @@ var csspath = mydir + "/css/";
             menubar.show();
         },
 
-        menu: function (config, renderTo) {
+        create: function (config, renderTo) {
             renderTo = renderTo || "menu";
 
-            $.jaysic.init();
+            $.jaysic.menu.init();
 
             this.container = $("#" + renderTo);
 
@@ -102,25 +105,25 @@ var csspath = mydir + "/css/";
             // Check if you clicked inside the menu area:
 
             page.mousedown(function () {
-                $.jaysic.temp |= $(this).parents("div.jaysic-menu").length;
+                $.jaysic.menu.temp |= $(this).parents("div.jaysic-menu").length;
             });
 
             page.mouseup(function () {
                 if ($(this).prop("tagName").toLowerCase() === "html") {
-                    $.jaysic.active = $.jaysic.temp === 1;
-                    if ($.jaysic.active === false) {
+                    $.jaysic.menu.active = $.jaysic.menu.temp === 1;
+                    if ($.jaysic.menu.active === false) {
                         var positions = $(".jaysic-menu ul:first-child").children();
                         positions.removeClass("active");
-                        $.jaysic.hideAllSubmenus();
+                        $.jaysic.menu.hideAllSubmenus();
                     }
-                    $.jaysic.temp = 0;
+                    $.jaysic.menu.temp = 0;
                 }
             });
 
             // Menu bar handling:
 
             menubar.click(function () {
-                $.jaysic.active = true;
+                $.jaysic.menu.active = true;
                 var positions = $(".jaysic-menu ul:first-child").children();
                 var i;
                 for (i = 0; i < positions.length; i++) {
@@ -135,16 +138,16 @@ var csspath = mydir + "/css/";
 
             menubar.mouseenter(function () {
 
-                $.jaysic.hideAllSubmenus();
+                $.jaysic.menu.hideAllSubmenus();
 
-                if ($.jaysic.active === true) {
-                    $.jaysic.menuItemHandler($(this));
+                if ($.jaysic.menu.active === true) {
+                    $.jaysic.menu.menuItemHandler($(this));
                 }
             });
 
             // Menu items handling:
             submenu.click(function () {
-                $.jaysic.hideAllSubmenus();
+                $.jaysic.menu.hideAllSubmenus();
             });
 
             submenu.mouseenter(function () {
@@ -152,8 +155,8 @@ var csspath = mydir + "/css/";
 
                 t.siblings().children("ul").hide();
 
-                if ($.jaysic.active === true) {
-                    $.jaysic.menuItemHandler(t);
+                if ($.jaysic.menu.active === true) {
+                    $.jaysic.menu.menuItemHandler(t);
                 }
             });
         },
@@ -162,13 +165,15 @@ var csspath = mydir + "/css/";
 
             root = root || false;
 
-            var container = document.createElement("ul");
 
             function addClass(element, classname) {
                 var current = element.getAttribute("class");
                 var c = current === null ? classname : classname + " " + current;
+
                 element.setAttribute("class", c);
             }
+
+            var container = document.createElement("ul");
 
             for (var i = 0; i < children.length; i++) {
                 var element = children[i];
@@ -194,7 +199,7 @@ var csspath = mydir + "/css/";
                     }
 
                     var caption = element.caption;
-                    caption += isDialogTrigger ? "…" : "";
+                    caption += hasAction && isDialogTrigger ? "…" : "";
 
                     var text = document.createTextNode(caption);
                     var link = document.createElement("div");

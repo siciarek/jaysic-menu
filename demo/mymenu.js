@@ -136,9 +136,7 @@ var ironmenu = [
             },
             "-",
             {
-                "caption": "Tennis",
-//                "url": "tennis.html",
-                "action": "alert('Tennis Action')"
+                "caption": "Tennis"
             }
         ]
     },
@@ -164,11 +162,15 @@ var ironmenu = [
                 "caption": "Germany",
                 "url": "http://en.wikipedia.org/wiki/Germany",
                 "icon": "germany"
+            }
+            ,
+            {
+                "type": "separator"
             },
             {
-                "type": "dialog",
-                "caption": "Subskrybuj tę stronę",
-                "icon": "world"
+                "caption": "Netherlands",
+                "url": "http://en.wikipedia.org/wiki/Netherlands",
+                "icon": ""
             }
         ]
     },
@@ -176,15 +178,6 @@ var ironmenu = [
         "caption": "Logout",
         "action": "alert('Logout Action')",
         "icon": "logout"
-    },
-    "-",
-    {
-        "caption": "Disabled menu bar",
-        "icon": "logout"
-    },
-    "-",
-    {
-        "caption": "Disabled menu bar no icon"
     }
 ];
 
@@ -202,10 +195,19 @@ var simple = [
     },
     {
         "caption" : "Zakończ"
+    },
+    "-",
+    {
+        "caption": "Disabled menu bar",
+        "icon": "logout"
+    },
+    "-",
+    {
+        "caption": "Disabled menu bar no icon"
     }
 ];
 
 
 $(document).ready(function () {
-    $.jaysic.menu(ironmenu);
+    $.jaysic.menu.create(firefox);
 });

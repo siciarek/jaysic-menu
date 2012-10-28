@@ -34,12 +34,13 @@ div.jaysic-menu li {
 }
 
 div.jaysic-menu li:last-child {
-    padding-bottom: 5px;
+    padding-bottom: 2px;
 }
 
 div.jaysic-menu li.icon {
     background-repeat: no-repeat;
-    background-position: 3px 2px;
+    background-position: 3px 1px;
+    background-image: url(../images/icons/icon.png);
     color: black !important;
 }
 
