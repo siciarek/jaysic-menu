@@ -21,7 +21,7 @@ Include scripts *after* the jQuery library (unless you are packaging scripts som
 
 ## Demo page
 
-[http://it.siciarek.pl/jaysic-menu/index.html](http://it.siciarek.pl/jaysic-menu/index.html)
+[http://it.siciarek.pl/jaysic-menu/demo/index.html](http://it.siciarek.pl/jaysic-menu/demo/index.html)
 
 
 ## Development
