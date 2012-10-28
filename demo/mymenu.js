@@ -209,5 +209,5 @@ var simple = [
 
 
 $(document).ready(function () {
-    $.jaysic.menu.create(firefox);
+    $.jaysic.menu.create(ironmenu);
 });
