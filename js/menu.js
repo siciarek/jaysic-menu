@@ -176,6 +176,15 @@ var ironmenu = [
         "caption": "Logout",
         "action": "alert('Logout Action')",
         "icon": "logout"
+    },
+    "-",
+    {
+        "caption": "Disabled menu bar",
+        "icon": "logout"
+    },
+    "-",
+    {
+        "caption": "Disabled menu bar no icon"
     }
 ];
 

@@ -7,11 +7,43 @@ div.jaysic-menu {
     color: black;
 }
 
-div.jaysic-menu li.inactive div {
+div.jaysic-menu li.disabled div {
     color: #808080 !important;
     text-shadow: 1px 1px white;
 }
 
-div.jaysic-menu li.inactive:hover div {
+div.jaysic-menu li.disabled:hover div {
     text-shadow: none;
+}
+
+div.jaysic-menu ul:first-child > li.disabled {
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border: none;
+}
+
+div.jaysic-menu ul:first-child > li.disabled:hover {
+    background-position: 3px 2px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-right: 4px;
+    padding-left: 4px;
+    border: none;
+}
+
+div.jaysic-menu ul:first-child > li.disabled:hover div {
+    text-shadow: 1px 1px white;
+}
+
+
+div.jaysic-menu ul:first-child > li.icon.disabled {
+    padding-left: 21px;
+    padding-right: 3px;
+}
+
+div.jaysic-menu ul:first-child > li.icon.disabled:hover {
+    padding-left: 21px;
+    padding-right: 3px;
 }

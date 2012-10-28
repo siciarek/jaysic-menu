@@ -134,7 +134,7 @@
                 var hasUrl = typeof element.url !== "undefined";
                 var hasAction = typeof element.action !== "undefined";
                 var hasIcon = typeof element.icon !== "undefined";
-                var isInactive = hasAction === false && hasUrl === false && hasChildren === false;
+                var isDisabled = hasAction === false && hasUrl === false && hasChildren === false;
                 var isDialogTrigger = typeof element.type !== "undefined" && element.type === "dialog";
 
                 var menu = document.createElement("li");
@@ -158,8 +158,8 @@
                     link.appendChild(text);
                     menu.appendChild(link);
 
-                    if (isInactive) {
-                        addClass(menu, "inactive");
+                    if (isDisabled) {
+                        addClass(menu, "disabled");
                     }
 
                     if (hasIcon) {
