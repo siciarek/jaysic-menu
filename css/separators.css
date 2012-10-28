@@ -12,7 +12,7 @@ div.jaysic-menu li.separator.horizontal {
     padding: 0;
     background-repeat: repeat-x;
     background-position: center;
-    background-image: url(../images/icons/separator-horizontal.png);
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAIAAAAW4yFwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAABBJREFUGFdjaGhoYPj//z8ADwIEft82b4oAAAAASUVORK5CYII=");
 
     font-size: 0;
     line-height: 0;
@@ -29,7 +29,7 @@ div.jaysic-menu li.separator.vertical:hover
     padding: 0;
     background-repeat: repeat-y;
     background-position: center;
-    background-image: url(../images/icons/separator-vertical.png);
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAIAAAB7QOjdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAA9JREFUGFdjaGho+P//PwANgQR+77Aw2wAAAABJRU5ErkJggg==");
 }
 
 div.jaysic-menu li.separator.vertical:hover {
