@@ -6,3 +6,12 @@ div.jaysic-menu {
     font-size: 11px;
     color: black;
 }
+
+div.jaysic-menu li.inactive div {
+    color: #808080 !important;
+    text-shadow: 1px 1px white;
+}
+
+div.jaysic-menu li.inactive:hover div {
+    text-shadow: none;
+}

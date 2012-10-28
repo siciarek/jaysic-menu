@@ -8,10 +8,6 @@
 
         container: null,
 
-        symbols: {
-            ellip: "…"
-        },
-
         menuItemHandler: function (t) {
 
             if ($.jaysic.active === false) {
@@ -57,8 +53,6 @@
             var page = $("*");
             var menubar = $(".jaysic-menu ul:first-child > li");
             var submenu = $(".jaysic-menu ul:not(:first-child) > li");
-
-
 
             // Check if you clicked inside the menu area:
 
@@ -134,7 +128,14 @@
             for (var i = 0; i < children.length; i++) {
                 var element = children[i];
 
+
                 var isSeparator = element === "-" || (typeof element.type !== null && element.type === "separator");
+                var hasChildren = typeof element.menu !== "undefined";
+                var hasUrl = typeof element.url !== "undefined";
+                var hasAction = typeof element.action !== "undefined";
+                var hasIcon = typeof element.icon !== "undefined";
+                var isInactive = hasAction === false && hasUrl === false && hasChildren === false;
+                var isDialogTrigger = typeof element.type !== "undefined" && element.type === "dialog";
 
                 var menu = document.createElement("li");
 
@@ -144,36 +145,40 @@
                 }
                 else {
 
-                    var hasChildren = typeof element.menu !== "undefined";
-                    var hasUrl = typeof element.url !== "undefined";
-                    var hasAction = typeof element.action !== "undefined";
-                    var hasIcon = typeof element.icon !== "undefined";
+                    if(typeof element.caption === "undefined") {
+                        throw "Invalid menu definition";
+                    }
 
-                    var text = document.createTextNode(element.caption);
+                    var caption = element.caption;
+                    caption += isDialogTrigger ? "…" : "";
+
+                    var text = document.createTextNode(caption);
                     var link = document.createElement("div");
 
                     link.appendChild(text);
                     menu.appendChild(link);
 
-                    if (hasAction && hasChildren === false) {
-                        menu.setAttribute("onclick", element.action);
-                    }
-                    else if (hasUrl && hasChildren === false) {
-                        menu.setAttribute("onclick", "location.href='" + element.url + "'");
-                    }
-
-                    if(hasAction === false && hasUrl === false && hasChildren === false) {
+                    if (isInactive) {
                         addClass(menu, "inactive");
                     }
 
-                    if (hasIcon === true) {
+                    if (hasIcon) {
                         addClass(menu, "icon icon-" + element.icon);
                     }
 
-                    if (hasChildren === true) {
+                    if (hasChildren) {
                         menu.appendChild(this.renderMenu(element.menu));
                         if (root === false) {
                             addClass(menu, "has-children");
+                        }
+                    }
+                    else {
+
+                        if (hasAction) {
+                            menu.setAttribute("onclick", element.action);
+                        }
+                        if (hasUrl) {
+                            menu.setAttribute("onclick", "location.href='" + element.url + "'");
                         }
                     }
                 }

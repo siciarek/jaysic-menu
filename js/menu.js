@@ -166,7 +166,8 @@ var ironmenu = [
                 "icon": "germany"
             },
             {
-                "caption": "Neverland",
+                "type": "dialog",
+                "caption": "Subskrybuj tę stronę",
                 "icon": "world"
             }
         ]
