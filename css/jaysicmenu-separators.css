@@ -14,7 +14,9 @@ div.jaysic-menu li.separator.horizontal {
     line-height: 0;
 }
 
-div.jaysic-menu li.separator.vertical {
+div.jaysic-menu li.separator.vertical,
+div.jaysic-menu li.separator.vertical:hover
+{
     width: 7px;
     height: 16px;
     margin-top: 3px;
