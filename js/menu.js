@@ -164,6 +164,10 @@ var ironmenu = [
                 "caption": "Germany",
                 "url": "http://en.wikipedia.org/wiki/Germany",
                 "icon": "germany"
+            },
+            {
+                "caption": "Neverland",
+                "icon": "world"
             }
         ]
     },

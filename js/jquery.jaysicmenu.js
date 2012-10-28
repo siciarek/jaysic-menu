@@ -125,6 +125,12 @@
 
             var container = document.createElement("ul");
 
+            function addClass(element, classname) {
+                var current = element.getAttribute("class");
+                var c = current === null ? classname : classname + " " + current;
+                element.setAttribute("class", c);
+            }
+
             for (var i = 0; i < children.length; i++) {
                 var element = children[i];
 
@@ -156,15 +162,18 @@
                         menu.setAttribute("onclick", "location.href='" + element.url + "'");
                     }
 
+                    if(hasAction === false && hasUrl === false && hasChildren === false) {
+                        addClass(menu, "inactive");
+                    }
+
                     if (hasIcon === true) {
-                        menu.setAttribute("class", "icon icon-" + element.icon);
+                        addClass(menu, "icon icon-" + element.icon);
                     }
 
                     if (hasChildren === true) {
                         menu.appendChild(this.renderMenu(element.menu));
                         if (root === false) {
-                            var c = "has-children " + menu.getAttribute("class");
-                            menu.setAttribute("class", c);
+                            addClass(menu, "has-children");
                         }
                     }
                 }
