@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.icon-checked { background-image: url(../images/icons/checked.png) !important; }
+.icon-blank   { background-image: url(../images/icons/checked.png) !important; }
+
 .icon-share-document {
     background-image: url(../images/icons/share-document.png) !important;
 }

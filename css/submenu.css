@@ -44,6 +44,7 @@ div.jaysic-menu li.icon {
     color: black !important;
 }
 
+div.jaysic-menu li.has-children.selected,
 div.jaysic-menu ul > li:hover {
     background-color: #0A246A;
     color: white !important;
@@ -54,7 +55,7 @@ div.jaysic-menu li.has-children > div  {
     background-position: center right;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAC1JREFUOE9jYBgFNA2B/5SaDjKAIkNgBpBtCLIBZBlCNReQHZZkOZts24awRgBvSg/x3KiFCwAAAABJRU5ErkJggg==");
 }
-
+div.jaysic-menu li.has-children.selected > div,
 div.jaysic-menu li.has-children:hover > div  {
     color: white;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAC9JREFUOE9jYBgFtAuB/0BAkekgAygyBGYA2YYgG0CWIVRzAdkBSZazybZtaGsEABC2P8FzuOgRAAAAAElFTkSuQmCC");

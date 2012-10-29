@@ -2,6 +2,33 @@ function tennisAction() {
     console.log("Tennis Action");
 }
 
+var simple = [
+    {
+        "caption" : "Nowa karta",
+        "icon": "soccer"
+    },
+    {
+        "caption" : "Nowe okno",
+        "icon": "car"
+    },
+    {
+        "caption" : "Otwórz plik"
+    },
+    {
+        "caption" : "Zakończ"
+    },
+    "-",
+    {
+        "caption": "Disabled menu bar",
+        "icon": "logout"
+    },
+    "-",
+    {
+        "caption": "Disabled menu bar no icon"
+    }
+];
+
+
 var favourites = [
     {
         "caption": "LH DB",
@@ -162,14 +189,17 @@ var ironmenu = [
                 "caption": "Germany",
                 "url": "http://en.wikipedia.org/wiki/Germany",
                 "icon": "germany"
-            }
-            ,
+            },
             {
                 "type": "separator"
             },
             {
                 "caption": "Netherlands",
                 "url": "http://en.wikipedia.org/wiki/Netherlands",
+                "icon": ""
+            },
+            {
+                "caption": "Neverland",
                 "icon": ""
             }
         ]
@@ -180,33 +210,6 @@ var ironmenu = [
         "icon": "logout"
     }
 ];
-
-var simple = [
-    {
-        "caption" : "Nowa karta",
-        "icon": "soccer"
-    },
-    {
-        "caption" : "Nowe okno",
-        "icon": "car"
-    },
-    {
-        "caption" : "Otwórz plik"
-    },
-    {
-        "caption" : "Zakończ"
-    },
-    "-",
-    {
-        "caption": "Disabled menu bar",
-        "icon": "logout"
-    },
-    "-",
-    {
-        "caption": "Disabled menu bar no icon"
-    }
-];
-
 
 $(document).ready(function () {
     $.jaysic.menu.create(ironmenu);

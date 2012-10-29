@@ -7,7 +7,6 @@ var csspath = mydir + "/css/";
 
     $.jaysic = {};
 
-
     $.jaysic.menu = {
 
         printable: false,
@@ -43,7 +42,7 @@ var csspath = mydir + "/css/";
                 stylesheet.setAttribute("rel", "stylesheet");
                 stylesheet.setAttribute("type", "text/css");
 
-                if(this.printable === false) {
+                if (this.printable === false) {
                     stylesheet.setAttribute("media", style === "print" ? "print" : "screen");
                 }
 
@@ -60,6 +59,9 @@ var csspath = mydir + "/css/";
             }
 
             var submenu = t.children("ul");
+
+            $("div.jaysic-menu *").removeClass("selected");
+            t.parents("li").addClass("selected");
 
             if (submenu.length > 0) {
 
@@ -81,7 +83,7 @@ var csspath = mydir + "/css/";
         },
 
         hideAllSubmenus: function () {
-            var allmenus = $(".jaysic-menu ul");
+            var allmenus = $(".jaysic-menu ul:not(:first-child)");
             var menubar = $(".jaysic-menu > ul:first-child");
             allmenus.hide();
             menubar.show();
@@ -100,15 +102,15 @@ var csspath = mydir + "/css/";
 
             var page = $("*");
             var menubar = $(".jaysic-menu ul:first-child > li");
-            var submenu = $(".jaysic-menu ul:not(:first-child) > li");
+            var submenu = $(".jaysic-menu ul:not(:first-child) li");
 
             // Check if you clicked inside the menu area:
 
             page.mousedown(function () {
-                $.jaysic.menu.temp |= $(this).parents("div.jaysic-menu").length;
-            });
-
-            page.mouseup(function () {
+                if($(this).parents().hasClass("jaysic-menu")) {
+                    $.jaysic.menu.temp = 1;
+                }
+            }).mouseup(function () {
                 if ($(this).prop("tagName").toLowerCase() === "html") {
                     $.jaysic.menu.active = $.jaysic.menu.temp === 1;
                     if ($.jaysic.menu.active === false) {
@@ -117,6 +119,23 @@ var csspath = mydir + "/css/";
                         $.jaysic.menu.hideAllSubmenus();
                     }
                     $.jaysic.menu.temp = 0;
+                }
+            });
+            // Menu items handling:
+            submenu.click(function () {
+                console.log("SUBMENU");
+                $.jaysic.menu.active === false;
+                $.jaysic.menu.hideAllSubmenus();
+            });
+            submenu.mouseenter(function () {
+                var t = $(this);
+
+                $("div.jaysic-menu *").removeClass("selected");
+                t.addClass("selected");
+                t.siblings().children("ul").hide();
+
+                if ($.jaysic.menu.active === true) {
+                    $.jaysic.menu.menuItemHandler(t);
                 }
             });
 
@@ -131,40 +150,22 @@ var csspath = mydir + "/css/";
                     if (position.hasClass("separator")) {
                         continue;
                     }
-                    position.addClass("active");
                 }
                 $(this).trigger("mouseenter");
-            });
-
-            menubar.mouseenter(function () {
-
-                $.jaysic.menu.hideAllSubmenus();
+            }).mouseenter(function () {
 
                 if ($.jaysic.menu.active === true) {
+                    $.jaysic.menu.hideAllSubmenus();
                     $.jaysic.menu.menuItemHandler($(this));
                 }
             });
 
-            // Menu items handling:
-            submenu.click(function () {
-                $.jaysic.menu.hideAllSubmenus();
-            });
 
-            submenu.mouseenter(function () {
-                var t = $(this);
-
-                t.siblings().children("ul").hide();
-
-                if ($.jaysic.menu.active === true) {
-                    $.jaysic.menu.menuItemHandler(t);
-                }
-            });
         },
 
         renderMenu: function (children, root) {
 
             root = root || false;
-
 
             function addClass(element, classname) {
                 var current = element.getAttribute("class");
@@ -223,12 +224,12 @@ var csspath = mydir + "/css/";
                     }
                     else {
 
-                        if (hasAction) {
-                            menu.setAttribute("onclick", element.action);
-                        }
-                        if (hasUrl) {
-                            menu.setAttribute("onclick", "location.href='" + element.url + "'");
-                        }
+//                        if (hasAction) {
+//                            menu.setAttribute("onclick", element.action);
+//                        }
+//                        if (hasUrl) {
+//                            menu.setAttribute("onclick", "location.href='" + element.url + "'");
+//                        }
                     }
                 }
                 container.appendChild(menu);
