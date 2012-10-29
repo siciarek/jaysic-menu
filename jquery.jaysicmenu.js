@@ -9,9 +9,15 @@ var csspath = mydir + "/css/";
 
     $.jaysic.menu = {
 
+        style: "redmond",
+
         printable: false,
 
         temp: 0,
+		
+		token: 0,
+		
+		delay: 350,
 
         active: false,
 
@@ -22,8 +28,8 @@ var csspath = mydir + "/css/";
             var stylesheets = [
                 "icons",
                 "base",
-                "top-menu-bar",
                 "submenu",
+                "menu-bar",
                 "separators",
                 "print"
             ];
@@ -36,7 +42,7 @@ var csspath = mydir + "/css/";
             while (stylesheets.length) {
                 style = stylesheets.shift();
 
-                cssfile = csspath + style + ".css";
+                cssfile = csspath + this.style + "/" + style + ".css";
 
                 stylesheet = document.createElement("link");
                 stylesheet.setAttribute("rel", "stylesheet");
@@ -110,7 +116,9 @@ var csspath = mydir + "/css/";
                 if($(this).parents().hasClass("jaysic-menu")) {
                     $.jaysic.menu.temp = 1;
                 }
-            }).mouseup(function () {
+            });
+
+            page.mouseup(function () {
                 if ($(this).prop("tagName").toLowerCase() === "html") {
                     $.jaysic.menu.active = $.jaysic.menu.temp === 1;
                     if ($.jaysic.menu.active === false) {
@@ -121,6 +129,7 @@ var csspath = mydir + "/css/";
                     $.jaysic.menu.temp = 0;
                 }
             });
+
             // Menu items handling:
             submenu.click(function () {
                 console.log("SUBMENU");
@@ -130,14 +139,26 @@ var csspath = mydir + "/css/";
             submenu.mouseenter(function () {
                 var t = $(this);
 
-                $("div.jaysic-menu *").removeClass("selected");
-                t.addClass("selected");
-                t.siblings().children("ul").hide();
-
+                
+				var token = Math.random();
+				
+				$.jaysic.menu.token = token;
+				
                 if ($.jaysic.menu.active === true) {
-                    $.jaysic.menu.menuItemHandler(t);
+					setTimeout(function() {
+						t.siblings(".has-children").children("ul").hide();
+					
+						if($.jaysic.menu.token === token) {
+							$.jaysic.menu.menuItemHandler(t);
+						}
+					},
+					$.jaysic.menu.delay);
                 }
             });
+			
+			submenu.mouseleave(function () {
+				$.jaysic.menu.token = Math.random();
+			});
 
             // Menu bar handling:
 
@@ -145,14 +166,22 @@ var csspath = mydir + "/css/";
                 $.jaysic.menu.active = true;
                 var positions = $(".jaysic-menu ul:first-child").children();
                 var i;
+
                 for (i = 0; i < positions.length; i++) {
                     var position = $(positions[i]);
                     if (position.hasClass("separator")) {
                         continue;
                     }
+                    position.addClass("active");
                 }
-                $(this).trigger("mouseenter");
-            }).mouseenter(function () {
+
+                if ($.jaysic.menu.active === true) {
+                    $.jaysic.menu.hideAllSubmenus();
+                    $.jaysic.menu.menuItemHandler($(this));
+                }
+            })
+
+            menubar.mouseenter(function () {
 
                 if ($.jaysic.menu.active === true) {
                     $.jaysic.menu.hideAllSubmenus();
