@@ -14,10 +14,10 @@ var csspath = mydir + "/css/";
         printable: false,
 
         temp: 0,
-		
-		token: 0,
-		
-		delay: 350,
+
+        token: 0,
+
+        delay: 350,
 
         active: false,
 
@@ -58,16 +58,46 @@ var csspath = mydir + "/css/";
             }
         },
 
-        menuItemHandler: function (t) {
+        menuBarItemHandler: function (t) {
 
-            if ($.jaysic.menu.active === false) {
+            $.jaysic.menu.hideAllSubmenus();
+
+            if (t.hasClass("disabled") === true) {
+                return;
+            }
+
+            t.find("li").removeClass("selected");
+
+            t.addClass("selected");
+
+            var submenu = t.children("ul");
+
+            if (submenu.length > 0) {
+
+                var submenuLeft = t.position().left + 1;
+                var submenuTop = t.position().top + t.height() + 7;
+
+                submenu.css({
+                    left: submenuLeft,
+                    top: submenuTop
+                });
+
+                submenu.show();
+            }
+            else {
+                $.jaysic.menu.doAction(t);
+            }
+        },
+
+        submenuItemHandler: function (t, clicked) {
+
+            clicked = clicked || false;
+
+            if (t.hasClass("disabled") === true) {
                 return;
             }
 
             var submenu = t.children("ul");
-
-            $("div.jaysic-menu *").removeClass("selected");
-            t.parents("li").addClass("selected");
 
             if (submenu.length > 0) {
 
@@ -86,110 +116,91 @@ var csspath = mydir + "/css/";
 
                 submenu.show();
             }
+            else {
+                if (clicked === true) {
+                    $.jaysic.menu.doAction(t);
+                }
+            }
         },
 
         hideAllSubmenus: function () {
             var allmenus = $(".jaysic-menu ul:not(:first-child)");
             var menubar = $(".jaysic-menu > ul:first-child");
             allmenus.hide();
+            menubar.children("li").removeClass("selected");
             menubar.show();
+        },
+
+        doAction: function (t) {
+            $.jaysic.menu.hideAllSubmenus();
+            console.log(t);
+            console.log("DO ACTION");
         },
 
         create: function (config, renderTo) {
             renderTo = renderTo || "menu";
-
             $.jaysic.menu.init();
-
             this.container = $("#" + renderTo);
-
             this.container.addClass("jaysic-menu");
-            var menu = this.renderMenu(config, true);
-            this.container.append(menu);
+            this.container.append(this.renderMenu(config, true));
 
-            var page = $("*");
-            var menubar = $(".jaysic-menu ul:first-child > li");
-            var submenu = $(".jaysic-menu ul:not(:first-child) li");
+            var insideMenu = $("div.jaysic-menu").get(0);
 
-            // Check if you clicked inside the menu area:
-
-            page.mousedown(function () {
-                if($(this).parents().hasClass("jaysic-menu")) {
-                    $.jaysic.menu.temp = 1;
+            // Click outside the menu:
+            $("*").click(function (event) {
+                if ($.contains(insideMenu, event.target) === false) {
+                    $.jaysic.menu.hideAllSubmenus();
                 }
             });
 
-            page.mouseup(function () {
-                if ($(this).prop("tagName").toLowerCase() === "html") {
-                    $.jaysic.menu.active = $.jaysic.menu.temp === 1;
-                    if ($.jaysic.menu.active === false) {
-                        var positions = $(".jaysic-menu ul:first-child").children();
-                        positions.removeClass("active");
-                        $.jaysic.menu.hideAllSubmenus();
-                    }
-                    $.jaysic.menu.temp = 0;
-                }
-            });
-
-            // Menu items handling:
-            submenu.click(function () {
-                console.log("SUBMENU");
-                $.jaysic.menu.active === false;
-                $.jaysic.menu.hideAllSubmenus();
-            });
-            submenu.mouseenter(function () {
+            $("div.jaysic-menu > ul:first-child > li").click(function (event) {
+                var who = event.target;
                 var t = $(this);
 
-                
-				var token = Math.random();
-				
-				$.jaysic.menu.token = token;
-				
-                if ($.jaysic.menu.active === true) {
-					setTimeout(function() {
-						t.siblings(".has-children").children("ul").hide();
-					
-						if($.jaysic.menu.token === token) {
-							$.jaysic.menu.menuItemHandler(t);
-						}
-					},
-					$.jaysic.menu.delay);
-                }
-            });
-			
-			submenu.mouseleave(function () {
-				$.jaysic.menu.token = Math.random();
-			});
-
-            // Menu bar handling:
-
-            menubar.click(function () {
-                $.jaysic.menu.active = true;
-                var positions = $(".jaysic-menu ul:first-child").children();
-                var i;
-
-                for (i = 0; i < positions.length; i++) {
-                    var position = $(positions[i]);
-                    if (position.hasClass("separator")) {
-                        continue;
-                    }
-                    position.addClass("active");
-                }
-
-                if ($.jaysic.menu.active === true) {
-                    $.jaysic.menu.hideAllSubmenus();
-                    $.jaysic.menu.menuItemHandler($(this));
-                }
-            })
-
-            menubar.mouseenter(function () {
-
-                if ($.jaysic.menu.active === true) {
-                    $.jaysic.menu.hideAllSubmenus();
-                    $.jaysic.menu.menuItemHandler($(this));
+                if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
+                    $.jaysic.menu.menuBarItemHandler(t);
                 }
             });
 
+            $("div.jaysic-menu ul:not(:first-child) > li").click(function (event) {
+                var who = event.target;
+                var t = $(this);
 
+                if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
+                    $.jaysic.menu.submenuItemHandler(t, true);
+                }
+            });
+
+            $("div.jaysic-menu ul:not(:first-child) > li").mouseenter(function (event) {
+                var who = event.target;
+                var t = $(this);
+
+                var token = Math.random();
+
+                $.jaysic.menu.token = token;
+
+                if (t.hasClass("separator") === false) {
+
+                    t.children("ul").find("ul").hide();
+                    t.siblings().children("ul").hide();
+                    t.siblings().removeClass("selected");
+                    t.find("li").removeClass("selected");
+
+                    t.addClass("selected");
+
+                    setTimeout(function () {
+
+                            if ($.jaysic.menu.token === token) {
+                                $.jaysic.menu.submenuItemHandler(t);
+                            }
+                        },
+                        $.jaysic.menu.delay);
+                }
+            });
+
+            $("div.jaysic-menu ul:not(:first-child) > li").mouseleave(function () {
+                $.jaysic.menu.token = Math.random();
+            });
         },
 
         renderMenu: function (children, root) {
