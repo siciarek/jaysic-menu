@@ -11,8 +11,7 @@ div.jaysic-menu ul:first-child {
     border: 0;
     border-top: 1px white outset;
     border-bottom: 1px #898782 solid;
-    padding-top: 1px;
-    padding-left: 0;
+    padding: 1px 0 0 0;
     box-shadow: 0 0 0 #000;
 }
 
@@ -25,21 +24,24 @@ div.jaysic-menu ul:first-child > li {
     width: auto;
     min-width: inherit;
     height: 16px;
+    float: left;
 
     padding-top: 3px;
     padding-right: 9px;
     padding-bottom: 0;
     padding-left: 8px;
-
-    float: left;
 }
 
-div.jaysic-menu ul:first-child > li.selected {
+div.jaysic-menu ul:first-child > li:hover {
     background-repeat: no-repeat;
-    background-position: 1px 1px;
-
-    background-color: transparent;
-    color: black !important;
+    background-position: 2px 2px;
+    cursor: default;
+    margin: 0;
+    border: 0;
+    width: auto;
+    min-width: inherit;
+    height: 16px;
+    float: left;
 
     border: 1px white outset;
 
@@ -49,26 +51,71 @@ div.jaysic-menu ul:first-child > li.selected {
     padding-left: 7px;
 }
 
-div.jaysic-menu ul:first-child > li.selected.icon,
+/* Textual menu: */
 
-div.jaysic-menu ul:first-child > li.icon {
-    padding-left: 21px;
-    padding-right: 3px;
-    color: black !important;
-}
+div.jaysic-menu ul:first-child > li.selected,
+div.jaysic-menu ul:first-child > li.selected:hover {
+    background-repeat: no-repeat;
+    background-position: 1px 1px;
+    background-color: transparent;
 
-div.jaysic-menu ul:first-child > li.icon.selected {
-    padding-left: 20px;
-    padding-right: 2px;
-    color: black !important;
-}
-
-div.jaysic-menu ul:first-child > li.selected {
     border: 1px white inset;
     color: black !important;
+
     padding-top: 3px;
     padding-right: 7px;
-    padding-bottom: 0;
+    padding-bottom: 1px;
     padding-left: 8px;
 }
 
+/* Menu with icon: */
+
+div.jaysic-menu ul:first-child > li.icon {
+    padding-top: 3px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+    padding-left: 21px;
+}
+
+
+div.jaysic-menu ul:first-child > li.icon:hover {
+    background-position: 1px 1px;
+    padding-top: 2px;
+    padding-right: 5px;
+    padding-bottom: 1px;
+    padding-left: 20px;
+}
+
+div.jaysic-menu ul:first-child > li.icon.selected {
+    color: black !important;
+    background-position: 2px 2px;
+
+    padding-top: 3px;
+    padding-right: 4px;
+    padding-bottom: 1px;
+    padding-left: 21px;
+}
+
+/* HOVERS: */
+
+/*div.jaysic-menu ul:first-child > li:hover {*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: 1px 1px;*/
+    /*background-color: transparent;*/
+
+    /*border: 1px white outset;*/
+    /*color: black !important;*/
+    /*padding-top: 2px;*/
+    /*padding-right: 5px;*/
+    /*padding-bottom: 2px;*/
+    /*padding-left: 7px;*/
+/*}*/
+
+/*div.jaysic-menu ul:first-child > li.icon:hover {*/
+    /*padding-left: 20px;*/
+    /*padding-right: 5px;*/
+    /*padding-right: 5px;*/
+    /*color: black !important;*/
+    /*background-position: 1px 1px;*/
+    /*color: black !important;*/
+/*}*/

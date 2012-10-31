@@ -212,6 +212,14 @@ var ironmenu = [
     "-",
     {
         "caption": "Disabled menu item"
+    },
+    {
+        "caption": "Disabled menu item with icon",
+        "icon": null
+    },
+    "-",
+    {
+        "caption": "Disabled"
     }
 ];
 

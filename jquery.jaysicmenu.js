@@ -61,14 +61,14 @@ var csspath = mydir + "/css/";
         menuBarItemHandler: function (t) {
 
             $.jaysic.menu.hideAllSubmenus();
+            t.addClass("selected");
 
             if (t.hasClass("disabled") === true) {
                 return;
             }
 
-            t.find("li").removeClass("selected");
-
             t.addClass("selected");
+            t.find("li").removeClass("selected");
 
             var submenu = t.children("ul");
 
@@ -127,7 +127,6 @@ var csspath = mydir + "/css/";
             var allmenus = $(".jaysic-menu ul:not(:first-child)");
             var menubar = $(".jaysic-menu > ul:first-child");
             allmenus.hide();
-            menubar.children("li").removeClass("selected");
             menubar.show();
         },
 
@@ -146,22 +145,47 @@ var csspath = mydir + "/css/";
 
             var insideMenu = $("div.jaysic-menu").get(0);
 
-            // Click outside the menu:
-            $("*").click(function (event) {
+            // Clicked outside the menu:
+            $("*").mouseup(function (event) {
                 if ($.contains(insideMenu, event.target) === false) {
+                    $(".jaysic-menu *").removeClass("selected");
+                    $.jaysic.menu.active = false;
                     $.jaysic.menu.hideAllSubmenus();
                 }
             });
 
-            $("div.jaysic-menu > ul:first-child > li").click(function (event) {
+            // Menubar:
+            $("div.jaysic-menu > ul:first-child > li").mousedown(function (event) {
+                var who = event.target;
+                var t = $(this);
+                $.jaysic.menu.active = true;
+//                    if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
+                if ($.jaysic.menu.active === true && false === t.hasClass("separator")) {
+                    if(t.hasClass("selected")) {
+                        $(".jaysic-menu *").removeClass("selected");
+                        $.jaysic.menu.active = false;
+                        $.jaysic.menu.hideAllSubmenus();
+                    }
+                    else
+                    {
+                        t.siblings().removeClass("selected");
+                        $.jaysic.menu.menuBarItemHandler(t);
+                    }
+                }
+            });
+
+            $("div.jaysic-menu > ul:first-child > li").mouseenter(function (event) {
                 var who = event.target;
                 var t = $(this);
 
-                if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
+//                    if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
+                if ($.jaysic.menu.active === true && false === t.hasClass("separator")) {
+                    t.siblings().removeClass("selected");
                     $.jaysic.menu.menuBarItemHandler(t);
                 }
             });
 
+            // Submenus:
             $("div.jaysic-menu ul:not(:first-child) > li").click(function (event) {
                 var who = event.target;
                 var t = $(this);

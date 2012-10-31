@@ -3,17 +3,68 @@
  */
 @charset "UTF-8";
 
+/**
+ * Menu container:
+ */
 div.jaysic-menu {
     font-family: Tahoma, Verdana, Arial, sans-serif;
     font-size: 11px;
-    color: black;
+    color: black !important;
+
+    /* prevent text selection */
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
+/**
+ * Submenus:
+ */
+
+div.jaysic-menu li.disabled div:hover,
 div.jaysic-menu li.disabled div {
     color: #808080 !important;
     text-shadow: 1px 1px white;
 }
 
+div.jaysic-menu li.disabled.selected div {
+    text-shadow: none;
+}
+
+/**
+ * Menu bar:
+ */
+div.jaysic-menu ul:first-child > li.disabled,
+div.jaysic-menu ul:first-child > li.disabled:hover,
+div.jaysic-menu ul:first-child > li.disabled.selected,
+div.jaysic-menu ul:first-child > li.disabled.selected:hover {
+    border: 0;
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+    padding-top: 3px !important;
+    padding-bottom: 0 !important;
+}
+
+div.jaysic-menu ul:first-child > li.icon.disabled,
+div.jaysic-menu ul:first-child > li.icon.disabled:hover,
+div.jaysic-menu ul:first-child > li.icon.disabled.selected,
+div.jaysic-menu ul:first-child > li.icon.disabled.selected:hover {
+    border: 0;
+    padding-right: 8px !important;
+    padding-left: 21px !important;
+    padding-top: 3px !important;
+    padding-bottom: 0 !important;
+    background-position: 2px 2px !important;
+}
+
+div.jaysic-menu ul:first-child > li.disabled.selected div {
+    text-shadow: 1px 1px white;
+}
+
+/*
 
 div.jaysic-menu ul:first-child > li.disabled {
     padding-top: 3px;
@@ -23,21 +74,9 @@ div.jaysic-menu ul:first-child > li.disabled {
     border: none;
 }
 
-div.jaysic-menu ul:first-child > li.disabled.selected {
-    background-position: 3px 2px;
-    padding-top: 3px;
-    padding-bottom: 0;
-    padding-right: 4px;
-    padding-left: 4px;
-    border: none;
-}
-
-div.jaysic-menu li.disabled div {
+div.jaysic-menu ul:first-child > li.disabled:hover {
+    color: #808080 !important;
     text-shadow: 1px 1px white;
-}
-
-div.jaysic-menu li.disabled.selected div {
-    text-shadow: none;
 }
 
 div.jaysic-menu ul:first-child > li.icon.disabled {
@@ -45,7 +84,21 @@ div.jaysic-menu ul:first-child > li.icon.disabled {
     padding-right: 3px;
 }
 
-div.jaysic-menu ul:first-child > li.icon.disabled.selected{
+div.jaysic-menu ul:first-child > li.icon.disabled.selected {
     padding-left: 21px;
     padding-right: 3px;
 }
+
+div.jaysic-menu ul:first-child > li.disabled.selected:hover,
+div.jaysic-menu ul:first-child > li.disabled.selected {
+    background-position: 3px 2px;
+    padding-top: 3px;
+    padding-bottom: 0;
+    padding-right: 4px;
+    padding-left: 4px;
+    border: none;
+    color: #808080 !important;
+    text-shadow: 1px 1px white;
+}
+
+*/
