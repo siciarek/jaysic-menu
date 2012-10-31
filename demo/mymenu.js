@@ -93,7 +93,9 @@ var ironmenu = [
     {
         "caption": "Start",
         "url": "index.html",
-        "action": "tennisAction()"
+        "action": function(){
+            alert("Start");
+        }
     },
     '-',
     {
@@ -102,6 +104,9 @@ var ironmenu = [
             {
                 "caption": "Soccer",
                 "icon": "soccer",
+                "action": function(){
+                     prompt("Do you like soccer?");
+                },
                 "url": "http://en.wikipedia.org/wiki/Association_football"
             },
             "-",
@@ -115,22 +120,22 @@ var ironmenu = [
                         "menu": [
                             {
                                 "caption": "France",
-                                "url": "http://en.wikipedia.org/wiki/France",
-                                "icon": "france"
+                                "icon": "france",
+                                "url": "http://en.wikipedia.org/wiki/Poland"
                             },
                             '-',
                             {
                                 "caption": "Poland",
-                                "url": "http://en.wikipedia.org/wiki/Poland",
-                                "icon": "poland"
+                                "icon": "poland",
+                                "url": "http://en.wikipedia.org/wiki/Poland"
                             },
                             {
                                 "type": "separator"
                             },
                             {
                                 "caption": "Germany",
-                                "url": "http://en.wikipedia.org/wiki/Germany",
-                                "icon": "germany"
+                                "icon": "germany",
+                                "url": "http://en.wikipedia.org/wiki/Germany"
                             }
                         ]
                     },
@@ -160,6 +165,11 @@ var ironmenu = [
                         ]
                     }
                 ]
+            },
+            "-",
+            {
+                "caption": "Hockey",
+                "url": "http://en.wikipedia.org/wiki/Hockey"
             },
             "-",
             {
@@ -200,13 +210,15 @@ var ironmenu = [
             },
             {
                 "caption": "Neverland",
-                "icon": ""
+                "icon": null
             }
         ]
     },
     {
         "caption": "Logout",
-        "action": "alert('Logout Action')",
+        "action": function(){
+            confirm("Logout?");
+        },
         "icon": "logout"
     },
     "-",

@@ -1,0 +1,49 @@
+/**
+ * Disabled items style:
+ */
+@charset "UTF-8";
+
+/**
+ * Disabled submenu items:
+ */
+div.jaysic-menu li.disabled div {
+    color: #808080 !important;
+    text-shadow: 1px 1px white;
+}
+
+div.jaysic-menu li.disabled.selected div {
+    text-shadow: none;
+}
+
+/**
+ * Disabled menu bar items:
+ */
+div.jaysic-menu ul:first-child > li.disabled,
+div.jaysic-menu ul:first-child > li.disabled:hover,
+div.jaysic-menu ul:first-child > li.disabled.selected,
+div.jaysic-menu ul:first-child > li.disabled.selected:hover {
+    border: 0;
+
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+    padding-top: 3px !important;
+    padding-bottom: 0 !important;
+}
+
+div.jaysic-menu ul:first-child > li.icon.disabled,
+div.jaysic-menu ul:first-child > li.icon.disabled:hover,
+div.jaysic-menu ul:first-child > li.icon.disabled.selected,
+div.jaysic-menu ul:first-child > li.icon.disabled.selected:hover {
+    border: 0;
+    background-position: 2px 2px !important;
+
+    padding-right: 8px !important;
+    padding-left: 21px !important;
+    padding-top: 3px !important;
+    padding-bottom: 0 !important;
+}
+
+div.jaysic-menu ul:first-child > li.disabled.selected div {
+    color: #808080 !important;
+    text-shadow: 1px 1px white;
+}
