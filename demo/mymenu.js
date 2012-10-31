@@ -190,7 +190,8 @@ var ironmenu = [
             {
                 "caption": "Poland",
                 "url": "http://en.wikipedia.org/wiki/Poland",
-                "icon": "poland"
+                "icon": "poland",
+                "target": "_blank"
             },
             {
                 "type": "separator"

@@ -9,13 +9,21 @@ var csspath = mydir + "/css/";
 
     $.jaysic.menu = {
 
+        stack: [],
+
         actions: {},
 
+        last: null,
+
         urls: {},
+
+        targets: {},
 
         style: "redmond",
 
         printable: false,
+
+        suppresHiding: false,
 
         temp: 0,
 
@@ -28,21 +36,12 @@ var csspath = mydir + "/css/";
         container: null,
 
         goto: function (url, target) {
-
-            //console.log(url);return;
-
-            // Create "<a>" element:
             var link = document.createElement("a");
             link.href = url;
             link.target = target || "_self";
 
-            // Append it to document's body
             document.body.appendChild(link);
-
-            // Click:
             link.click();
-
-            // Make tidy:
             document.body.removeChild(link);
         },
 
@@ -86,7 +85,8 @@ var csspath = mydir + "/css/";
 
             clicked = clicked || false;
 
-            $.jaysic.menu.hideAllSubmenus();
+            t.children("ul").hide();
+            $(".jaysic-menu ul:not(:first-child)").hide();
             t.addClass("selected");
 
             if (t.hasClass("disabled") === true) {
@@ -108,11 +108,12 @@ var csspath = mydir + "/css/";
                     top: submenuTop
                 });
 
+                $.jaysic.menu.top = submenu;
                 submenu.show();
             }
             else {
                 t.removeClass("selected");
-                if(clicked === true) {
+                if (clicked === true) {
                     t.addClass("selected");
                     $.jaysic.menu.doAction(t);
                 }
@@ -145,6 +146,7 @@ var csspath = mydir + "/css/";
                 });
 
                 submenu.show();
+                $.jaysic.menu.top = submenu;
             }
             else {
                 if (clicked === true) {
@@ -162,18 +164,16 @@ var csspath = mydir + "/css/";
 
         doAction: function (t) {
 
-
             var aid = t.attr("id");
             var action = $.jaysic.menu.actions[aid];
 
             var urlid = aid.replace(/^action_/, "");
 
-            if($.jaysic.menu.urls[urlid] !== "undefined") {
-                action($.jaysic.menu.urls[urlid]);
+            if ($.jaysic.menu.urls[urlid] !== "undefined") {
+                action($.jaysic.menu.urls[urlid], $.jaysic.menu.targets[urlid]);
             }
-            else
-            {
-               action();
+            else {
+                action();
             }
 
             $(".jaysic-menu *").removeClass("selected");
@@ -202,11 +202,11 @@ var csspath = mydir + "/css/";
             // Menubar:
             $("div.jaysic-menu > ul:first-child > li").mousedown(function (event) {
 
-//                console.log("MENU BAR mousedown");
-
                 var who = event.target;
                 var t = $(this);
+
                 $.jaysic.menu.active = true;
+                $.jaysic.menu.top = null;
 
                 if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
                     if (t.hasClass("selected")) {
@@ -223,13 +223,14 @@ var csspath = mydir + "/css/";
 
             $("div.jaysic-menu > ul:first-child > li").mouseenter(function (event) {
 
-//                console.log("MENU BAR mouseenter");
-
                 var who = event.target;
                 var t = $(this);
 
-//                    if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
-                if ($.jaysic.menu.active === true && false === t.hasClass("separator")) {
+                if ($.jaysic.menu.suppresHiding === false &&
+                    $.jaysic.menu.active === true
+                    && t.hasClass("separator") === false
+                    && t.hasClass("disabled") === false
+                    ) {
                     t.siblings().removeClass("selected");
                     $.jaysic.menu.menuBarItemHandler(t);
                 }
@@ -242,7 +243,6 @@ var csspath = mydir + "/css/";
                 var t = $(this);
 
                 if (t.hasClass("separator") === false && $(who).parents("li")[0] === this) {
-//                    console.log("SUBMENU ITEM click");
                     $.jaysic.menu.submenuItemHandler(t, true);
                 }
             });
@@ -255,19 +255,19 @@ var csspath = mydir + "/css/";
 
                 $.jaysic.menu.token = token;
 
-                if (t.hasClass("separator") === false) {
+                t.parents("li").addClass("selected");
 
-                    t.children("ul").find("ul").hide();
+                if (t.hasClass("separator") === false) {
                     t.siblings().children("ul").hide();
                     t.siblings().removeClass("selected");
-                    t.find("li").removeClass("selected");
-
                     t.addClass("selected");
 
                     setTimeout(function () {
-
                             if ($.jaysic.menu.token === token) {
                                 $.jaysic.menu.submenuItemHandler(t);
+                            }
+                            else {
+                                t.removeClass("selected");
                             }
                         },
                         $.jaysic.menu.delay);
@@ -276,6 +276,23 @@ var csspath = mydir + "/css/";
 
             $("div.jaysic-menu ul:not(:first-child) > li").mouseleave(function () {
                 $.jaysic.menu.token = Math.random();
+            });
+
+            // Leaving submenu:
+            $("div.jaysic-menu ul:first-child ul").mouseenter(function () {
+                $.jaysic.menu.suppresHiding = true;
+                $($.jaysic.menu.top).parent("ul").children("li").hide();
+
+//                $.jaysic.menu.top = this;
+
+                console.log($.jaysic.menu.suppresHiding);
+            });
+
+            $("div.jaysic-menu ul:first-child ul").mouseleave(function () {
+                var t = $(this);
+                $.jaysic.menu.suppresHiding = false;
+                console.log($.jaysic.menu.suppresHiding);
+                console.log($.jaysic.menu.top);
             });
         },
 
@@ -298,7 +315,7 @@ var csspath = mydir + "/css/";
                 var isSeparator = element === "-" || (typeof element.type !== null && element.type === "separator");
                 var hasChildren = typeof element.menu !== "undefined";
                 var hasAction = typeof element.action !== "undefined";
-                var hasUrl =  hasAction === false && typeof element.url !== "undefined";
+                var hasUrl = hasAction === false && typeof element.url !== "undefined";
                 var hasIcon = typeof element.icon !== "undefined";
                 var isDisabled = hasAction === false && hasUrl === false && hasChildren === false;
                 var isDialogTrigger = typeof element.type !== "undefined" && element.type === "dialog";
@@ -350,7 +367,6 @@ var csspath = mydir + "/css/";
                             }
 
                             if (hasAction) {
-                                console.log("HAS ACTION");
                                 ++index;
 
                                 $.jaysic.menu.actions["action_" + index] = element.action;
@@ -358,10 +374,12 @@ var csspath = mydir + "/css/";
                             }
 
                             if (hasUrl) {
-                                console.log("HAS URL");
                                 ++index;
 
                                 $.jaysic.menu.urls[index] = element.url;
+                                $.jaysic.menu.targets[index] = typeof element.target === "string" && element.target.match(/^_(blank|top|parent)$/) !== null
+                                    ? element.target : "_self";
+
                                 $.jaysic.menu.actions["action_" + index] = function (url, target) {
                                     $.jaysic.menu.goto(url, target)
                                 };

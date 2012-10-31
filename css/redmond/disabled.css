@@ -9,6 +9,10 @@
 div.jaysic-menu li.disabled div {
     color: #808080 !important;
     text-shadow: 1px 1px white;
+    filter:
+        progid:DXImageTransform.Microsoft.MotionBlur(strength=13, direction=310)
+        progid:DXImageTransform.Microsoft.Blur(pixelradius=2)
+        progid:DXImageTransform.Microsoft.Wheel(duration=3);
 }
 
 div.jaysic-menu li.disabled.selected div {
